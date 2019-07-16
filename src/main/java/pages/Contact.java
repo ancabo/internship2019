@@ -20,41 +20,8 @@ public class Contact extends TestBase {
 	// Elements ////
 	///////////////
 
-	////////////////////////////// Navigation_bar//////////////////////////////
 
-	@FindBy(xpath = "//*[@id=\'i6ksxrtk\']/h1/a")
-	private WebElement homeLogo;
 	
-	@FindBy(id = "i6kl732v0label")
-	private WebElement home;
-	
-	@FindBy(id = "i6kl732v1label")
-	private WebElement explore;
-	
-	@FindBy(id = "i6kl732v2label")
-	private WebElement rooms;
-	
-	@FindBy(id = "i6kl732v3label")
-	private WebElement contact;
-	
-	@FindBy (id = "i6tj0u8xlabel")
-	private WebElement book_now;
-
-
-	////////////////////////// Contact_block//////////////////////////////
-	
-	//// Social_bar ///////
-
-	@FindBy(id = "i6rlbitx0imageimageimage")
-	private WebElement fbBtn;
-
-	@FindBy(xpath = "//a[@id='i6m1143v1imagelink']")
-	private WebElement tweet_contact;
-
-	@FindBy(xpath = "//a[@id='i6m1143v2imagelink']")
-	private WebElement pint_contact;
-
-
 	//// Contact_fields ////
 
 	@FindBy(xpath = "//input[@id='comp-jxbsa1e9input']")
@@ -96,6 +63,16 @@ public class Contact extends TestBase {
 	@FindBy(xpath = "//*[@id='map_canvas']/div/div/div[7]/div[2]/a")
 	private WebElement reportGoogleError;
 
+	////Social bar////
+	
+	@FindBy(id = "i6m1143v0imagelink")
+	private WebElement fbBtn;
+	
+	@FindBy(id = "i6m1143v1imagelink")
+	private WebElement twitterBtn;
+	
+	@FindBy(id = "i6m1143v2imagelink")
+	private WebElement pinterestBtn;
 	
 	
 	/////////Action on elements////////////////
@@ -104,15 +81,16 @@ public class Contact extends TestBase {
 		changeFrame(iframe);
 	}
 	
-	
-	
-	public void clickContact() throws InterruptedException {
-		contact.click();
-		
+	public void clickFacebookButton() {
+		fbBtn.click();
 	}
-	public void clickIcon() throws InterruptedException {
-		click(fbBtn);
-		Thread.sleep(2000);
+	
+	public void clickTwitterButton() {
+		twitterBtn.click();
+	}
+	
+	public void clickPinterestButton() {
+		pinterestBtn.click();
 	}
 	
 	

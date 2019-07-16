@@ -9,6 +9,7 @@ import commons.TestBase;
 import pages.Header;
 import pages.Home;
 import pages.Rooms;
+import pages.Footer;
 
 public class test extends TestBase {
 
@@ -16,6 +17,7 @@ public class test extends TestBase {
 	Rooms room;
 	Header header;
 	Helpers helper;
+	Footer footer;
 
 	@BeforeMethod
 	public void elements() {
@@ -23,7 +25,9 @@ public class test extends TestBase {
 		home = new Home(driver);
 		room = new Rooms(driver);
 		helper = new Helpers();
+		footer = new Footer(driver);
 	}
+	
 
 	@Test
 	public void bookOverOneYear() throws InterruptedException {
@@ -43,8 +47,8 @@ public class test extends TestBase {
 	@Test
 	public void checkChatButton() throws InterruptedException {
 		SoftAssert chatWorks = new SoftAssert();
-		home.setFrameAndClickChat();
-		chatWorks.assertEquals(home.isChatOpen(), true);
+		footer.setFrameAndClickChat();
+		chatWorks.assertEquals(footer.isChatOpen(), true);
 		chatWorks.assertAll();
 
 	}

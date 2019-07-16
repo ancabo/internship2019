@@ -9,6 +9,7 @@ import commons.DriverHelpers;
 import pages.Contact;
 import pages.Rooms;
 import pages.Header;
+import pages.Footer;
 
 public class ZoomInTest extends TestBase {
 
@@ -16,6 +17,7 @@ public class ZoomInTest extends TestBase {
 	DriverHelpers d_helper;
 	Header header;
 	Rooms room;
+	Footer footer;
 
 	@BeforeMethod
 	public void elements() {
@@ -23,6 +25,7 @@ public class ZoomInTest extends TestBase {
 		d_helper = new DriverHelpers();
 		header = new Header(driver);
 		room = new Rooms(driver);
+		footer = new Footer(driver);
 	}
 
 	@Test(priority = 0)
@@ -37,9 +40,9 @@ public class ZoomInTest extends TestBase {
 	@Test(priority = 1)
 	public void iconFacebook() throws InterruptedException {
 		SoftAssert sa = new SoftAssert();
-		contact.clickContact();
+		header.clickContact();
 		contact.scrollDown(0, 3000);
-		contact.clickIcon();
+		footer.clickFacebookIcon();
 		d_helper.changeTab(1);
 		contact.compareCrtUrlToOtherURL("https://www.facebook.com/wix");
 		sa.assertEquals(contact.compareCrtUrlToOtherURL(getCrtURL()), true);

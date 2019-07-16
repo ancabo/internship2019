@@ -71,35 +71,8 @@ public class Home extends TestBase {
 		out_day = driver.findElement(By.xpath("//span[contains(text(), " + zi + ")]"));
 	}
 
-	///////////////////
-	/// Chat Element///
-	//////////////////
-
-	@FindBy(xpath = "//*[@class='_2wjrm']")
-	private WebElement chatBtn;
-
-	@FindBy(xpath = "//div[@data-hook = 'chat-widget']/div")
-	private WebElement chatWidget;
-
-	/////////////////////////
-	/// Social Bar Elements///
-	/////////////////////////
-
-	@FindBy(id = "i6rlbitx0imagelink")
-	private WebElement fbBtn;
-
-	@FindBy(id = "i6rlbitx1imagelink")
-	private WebElement twitterBtn;
-
-	@FindBy(id = "i6rlbitx2imagelink")
-	private WebElement pintBtn;
-
-	@FindBy(xpath = "//*[@id='i71ww6nk']/p/object/a")
-	private WebElement mailAddr;
-
-	@FindBy(xpath = "//*[@id='i71wwqnj']/p[2]/span/a")
-	private WebElement wixSite;
-
+	
+	
 	////////////////////////
 	///// Frames //////////
 	//////////////////////
@@ -110,8 +83,7 @@ public class Home extends TestBase {
 	@FindBy(xpath = "//iframe[@class='s_yOSHETPAPopupSkiniframe']")
 	private WebElement calendarFrame;
 
-	@FindBy(xpath = "//iframe[@title='Wix Chat']")
-	private WebElement wixChatFrame;
+	
 
 	/////////////////////////
 	// Actions on Elements//
@@ -193,29 +165,6 @@ public class Home extends TestBase {
 		changeFrame(calendarFrame);
 	}
 
-	public void chatFrame() {
-		changeFrame(wixChatFrame);
-	}
-
-	///////////////////////////////////////
-	// Chat button actions and keywords //
-	//////////////////////////////////////
-
-	public void setFrameAndClickChat() throws InterruptedException {
-		Thread.sleep(2500);
-		chatFrame();
-		click(chatBtn);
-	}
-
-	/////////////////////// Chat button keywords //////////////////////
-
-	public boolean isChatOpen() {
-		String chatVal;
-		chatVal = chatWidget.getAttribute("aria-expanded");
-		if (chatVal.equals("true"))
-			return true;
-		else
-			return false;
-	}
+	
 
 }

@@ -53,9 +53,10 @@ public class Header extends TestBase {
 		click(explore);
 	}
 
-	public Rooms clickRooms() throws InterruptedException {
-		 click(rooms);
-		 return new Rooms(driver);
+	public void clickRooms() throws InterruptedException {
+		Thread.sleep(2500); 
+		
+		click(rooms);
 	
 	}
 
