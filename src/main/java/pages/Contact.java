@@ -10,105 +10,127 @@ import commons.TestBase;
 public class Contact extends TestBase {
 	protected WebDriver driver;
 
-	public Contact(WebDriver driver) {
+	public Contact (WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
+	
 	////////////////
 	// Elements ////
 	///////////////
 
 	////////////////////////////// Navigation_bar//////////////////////////////
 
-	@FindBy(xpath = "//a[contains(text(), 'HOME & AWAY')]")
+	@FindBy(xpath = "//*[@id=\'i6ksxrtk\']/h1/a")
 	private WebElement homeLogo;
-
-	@FindBy(xpath = "//p[@id='i6kl732v0label']")
+	
+	@FindBy(id = "i6kl732v0label")
 	private WebElement home;
-
-	@FindBy(xpath = "//p[@id='i6kl732v1label']")
+	
+	@FindBy(id = "i6kl732v1label")
 	private WebElement explore;
-
-	@FindBy(xpath = "//p[@id='i6kl732v2label']")
+	
+	@FindBy(id = "i6kl732v2label")
 	private WebElement rooms;
-
-	@FindBy(xpath = "//p[@id='i6kl732v3label']")
+	
+	@FindBy(id = "i6kl732v3label")
 	private WebElement contact;
+	
+	@FindBy (id = "i6tj0u8xlabel")
+	private WebElement book_now;
 
-	@FindBy(xpath = "//a[@id='i6tj0u8xlink']")
-	private WebElement bookNow;
 
 	////////////////////////// Contact_block//////////////////////////////
-
+	
 	//// Social_bar ///////
 
-	@FindBy(xpath = "//a[@id='i6m1143v0imagelink']")
-	WebElement fb_contact;
+	@FindBy(id = "i6rlbitx0imageimageimage")
+	private WebElement fbBtn;
 
 	@FindBy(xpath = "//a[@id='i6m1143v1imagelink']")
-	WebElement tweet_contact;
+	private WebElement tweet_contact;
 
 	@FindBy(xpath = "//a[@id='i6m1143v2imagelink']")
-	WebElement pint_contact;
+	private WebElement pint_contact;
+
 
 	//// Contact_fields ////
 
 	@FindBy(xpath = "//input[@id='comp-jxbsa1e9input']")
-	WebElement name;
+	private WebElement name;
 
 	@FindBy(xpath = "//input[@id='comp-jxbsa1eminput']")
-	WebElement email;
+	private WebElement email;
 
 	@FindBy(xpath = "//input[@id='comp-jxbsa1evinput']")
-	WebElement phone;
+	private WebElement phone;
 
 	@FindBy(xpath = "//textarea[@id='comp-jxbsa1f7textarea']")
-	WebElement message;
+	private WebElement message;
 
 	@FindBy(xpath = "//button[@id='comp-jxbsa1filink']")
-	WebElement submit;
+	private WebElement submit;
+
 
 	//// Map //////////
 
-	@FindBy(xpath = "//*[@id='map_canvas']/div/div/div[2]/a/div/img")
-	WebElement google;
+	@FindBy(xpath = "//*[@id='i6lyzjshmapContainer']/iframe")
+	private WebElement iframe;
+	
+	@FindBy(xpath = "//*[@class='gm-style']/div[2]")
+	private WebElement google;
 
 	@FindBy(xpath = "//button[@aria-label='Toggle fullscreen view']")
-	WebElement fullscreenMap;
+	private WebElement fullscreenMap;
 
 	@FindBy(xpath = "//*[@id='map_canvas']/div/div/div[1]/div[3]/div/div[3]/div/img")
-	WebElement locationMarker;
+	private WebElement locationMarker;
 
 	@FindBy(xpath = "//*[@id='content']/p/b")
-	WebElement locationLabel;
+	private WebElement locationLabel;
 
 	@FindBy(xpath = "//*[@id='map_canvas']/div/div/div[6]/div[2]/a")
-	WebElement googleTerms;
+	private WebElement googleTerms;
 
 	@FindBy(xpath = "//*[@id='map_canvas']/div/div/div[7]/div[2]/a")
-	WebElement reportGoogleError;
+	private WebElement reportGoogleError;
 
-	////////////////////////// Bottom_social_bar ////////////////////////////////
-	
-	@FindBy(xpath = "")
-	WebElement fb_btn;
-	
-	@FindBy(xpath = "")
-	WebElement twitter_btn;
-	
-	@FindBy(xpath ="")
-	WebElement pint_btn;
-	
-	/////////////////////// Bottom_contact //////////////////////////////////////
 	
 	
-	////////////////////////
-	// Actions on Elements//
-	//////////////////////
-
-	public void clickSubmit(WebElement element) throws InterruptedException {
-		click(submit);
+	/////////Action on elements////////////////
+	
+	public void changeIframe() throws InterruptedException {
+		changeFrame(iframe);
+	}
+	
+	
+	
+	public void clickContact() throws InterruptedException {
+		contact.click();
+		
+	}
+	public void clickIcon() throws InterruptedException {
+		click(fbBtn);
+		Thread.sleep(2000);
+	}
+	
+	
+	public void doubleClickToZoomIn() throws InterruptedException {
+		doubleClick(google,0,-35);
+	}
+	
+	
+	
+	public boolean compareCrtUrlToOtherURL(String url) throws InterruptedException {
+		boolean flag = false;
+		Thread.sleep(1000);
+		if (getCrtURL().equals(url))
+			flag = true;
+		return flag;
 	}
 
+
+
+	
 }

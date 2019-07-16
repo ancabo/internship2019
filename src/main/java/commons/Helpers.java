@@ -3,6 +3,7 @@ package commons;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+
 public class Helpers {
 	
 	public String azi() {
@@ -12,5 +13,7 @@ public class Helpers {
 		String azi = format_azi.substring(0, 2);
 		return azi;
 	}
+	
+
 
 }

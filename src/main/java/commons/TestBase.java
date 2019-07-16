@@ -3,14 +3,17 @@ package commons;
 import java.io.IOException;
 import java.lang.reflect.Method;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+
 
 public class TestBase {
 	public static WebDriver driver;
@@ -55,6 +58,11 @@ public class TestBase {
 	public void navigateToURL(String url) {
 		driver.get(url);
 	}
+	
+	public String getCrtURL() {
+		return driver.getCurrentUrl();
+	}
+	
 
 	public void click(WebElement element) throws InterruptedException {
 		element.click();
@@ -67,5 +75,19 @@ public class TestBase {
 
 	public void changeFrame(WebElement frame) {
 		driver.switchTo().frame(frame);
+	}
+	
+	public void doubleClick(WebElement element, int x, int y) throws InterruptedException {
+		Actions act = new Actions(driver);
+		Thread.sleep(2000);
+		act.moveToElement(element,x,y).doubleClick().build().perform();
+	}
+
+	
+
+	public void scrollDown(int a, int b) throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		Thread.sleep(2000);
+		js.executeScript("window.scrollTo" +a+b);
 	}
 }
