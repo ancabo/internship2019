@@ -25,29 +25,29 @@ public class test extends TestBase {
 		helper = new Helpers();
 	}
 
-//	@Test
-//	public void bookOverOneYear() throws InterruptedException {
-//		SoftAssert noOverbooking = new SoftAssert();
-//		home.setFrameAndCheckin();
-//		home.clickInDay(helper.azi());
-//		for (int i = 0; i < 12; i++) {
-//			home.nextMonth();
-//		}
-//		home.clickOutDay(helper.azi());
-//		home.setFrameAndClickSearchBtn();
-//		noOverbooking.assertEquals(room.isOverBook(), true);
-//		noOverbooking.assertAll();
-//
-//	}
-//
-//	@Test
-//	public void checkChatButton() throws InterruptedException {
-//		SoftAssert chatWorks = new SoftAssert();
-//		home.setFrameAndClickChat();
-//		chatWorks.assertEquals(home.isChatOpen(), true);
-//		chatWorks.assertAll();
-//
-//	}
+	@Test
+	public void bookOverOneYear() throws InterruptedException {
+		SoftAssert noOverbooking = new SoftAssert();
+		home.setFrameAndCheckin();
+		home.clickInDay(helper.azi());
+		for (int i = 0; i < 12; i++) {
+			home.nextMonth();
+		}
+		home.clickOutDay(helper.azi());
+		home.setFrameAndClickSearchBtn();
+		noOverbooking.assertEquals(room.isOverBook(), true);
+		noOverbooking.assertAll();
+
+	}
+
+	@Test
+	public void checkChatButton() throws InterruptedException {
+		SoftAssert chatWorks = new SoftAssert();
+		home.setFrameAndClickChat();
+		chatWorks.assertEquals(home.isChatOpen(), true);
+		chatWorks.assertAll();
+
+	}
 
 	@Test
 	public void bookingRoomVerify() throws InterruptedException {
