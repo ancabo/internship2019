@@ -1,9 +1,12 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import commons.TestBase;
 
@@ -54,19 +57,19 @@ public class Header extends TestBase {
 	}
 
 	public void clickRooms() throws InterruptedException {
-		Thread.sleep(2500); 
-		
+		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebElement rooms = wait.until(ExpectedConditions.elementToBeClickable(By.id("i6kl732v2label")));
 		click(rooms);
 	
 	}
 
 	public void clickContact() throws InterruptedException {
-		click(contact);
+		contact.click();
 	}
 
 	public void clickBookNow() throws InterruptedException {
 		click(book_now);
 	}
 	
-	//////////Keywords/////////////
+	
 }

@@ -63,6 +63,9 @@ public class Contact extends TestBase {
 	@FindBy(xpath = "//*[@id='map_canvas']/div/div/div[7]/div[2]/a")
 	private WebElement reportGoogleError;
 
+	@FindBy(xpath = "//*[@id='map_canvas']/div/div/div[4]")
+	private WebElement mapCoord;
+	
 	////Social bar////
 	
 	@FindBy(id = "i6m1143v0imagelink")
@@ -83,6 +86,7 @@ public class Contact extends TestBase {
 	
 	public void clickFacebookButton() {
 		fbBtn.click();
+		
 	}
 	
 	public void clickTwitterButton() {
@@ -98,6 +102,19 @@ public class Contact extends TestBase {
 		doubleClick(google,0,-35);
 	}
 	
+	
+	public boolean checkZoomIn() {
+		boolean flag = false;
+		String zoomX = mapCoord.getAttribute("right");
+		String zoomY = mapCoord.getAttribute("width");
+		if(zoomX != "280px" || zoomY != "121px") {
+			flag = true;
+			System.out.println("The map is zoomed");
+			return flag;
+		}
+		System.out.println("Zoom does not work");
+		return flag;
+	}
 	
 	
 	public boolean compareCrtUrlToOtherURL(String url) throws InterruptedException {

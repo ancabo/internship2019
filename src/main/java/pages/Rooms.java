@@ -184,7 +184,7 @@ public class Rooms extends TestBase {
 	///////////////// Calendar Actions //////////////////////
 
 	public void nextMonth() throws InterruptedException {
-		click(nextMonth);
+		nextMonth.click();
 	}
 
 	public void prevMonth() throws InterruptedException {
