@@ -44,7 +44,7 @@ public class Rooms extends TestBase {
 	@FindBy(xpath = "//button[@class='search s-button']")
 	private WebElement searchBtn;
 
-	/////////////// Calendar Elemements ////////////////////
+	/////////////// Calendar Elements ////////////////////
 
 	@FindBy(xpath = "//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")
 	private WebElement nextMonth;
@@ -53,24 +53,52 @@ public class Rooms extends TestBase {
 	private WebElement prevMonth;
 
 	private WebElement inDay;
-
 	private void inDate(String zi) {
 		inDay = driver.findElement(By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
 	}
 
 	private WebElement outDay;
-
 	private void outDate(String zi) {
 		outDay = driver.findElement(By.xpath("//div/div[@name='check_out']//span[contains(text(), " + zi + ")]/.."));
 	}
 
 	@FindBy(xpath = "//h2[@class='s-title resultbar s-separator']/strong")
 	private WebElement periodBooking;
+
+	@FindBy(xpath = "//div/div[@name='check_in']/div")
+	private WebElement checkInMonth;
+
+	@FindBy(xpath = "//div/div[@name='check_out']/div")
+	private WebElement checkOutMonth;
+
+	////////////// room element ///////////////////
+
+	@FindBy(xpath = "//ul/li[1]/div/div[1]/img")
+	private WebElement roomWithLowestRate;
 	
-	//////////////room elem///////////////////
+	@FindBy(xpath = "//ul/li[2]/div/div[1]/img")
+	private WebElement roomWithMediumRate;
 	
-	@FindBy (xpath = "//*[@id='content']/div/div[2]/div/ul/li[3]/div/div[1]/img")
+	@FindBy(xpath = "//ul/li[3]/div/div[1]/img")
 	private WebElement roomWithTheHighestRate;
+	
+	@FindBy(xpath = "//ul/li[1]/div/div[2]/div[3]/span[2]")
+	private WebElement roomWithLowestRatePrice;
+
+	@FindBy(xpath = "//ul/li[2]/div/div[2]/div[3]/span[2]")
+	private WebElement roomWithMediumRatePrice;
+
+	@FindBy(xpath = "//ul/li[3]/div/div[2]/div[3]/span[2]")
+	private WebElement roomWithHighestRatePrice;
+	
+	@FindBy(xpath = "//ul/li[1]/div/div/div/p/span[@class='strans']")
+	private WebElement lowRateRoomDescrip;
+	
+	@FindBy(xpath = "//ul/li[2]/div/div/div/p/span[@class='strans']")
+	private WebElement mediumRateRoomDescrip;
+	
+	@FindBy (xpath = "//ul/li[3]/div/div/div/p/span[@class='strans']")
+	private WebElement highRateRoomDescrip;
 
 	//////////////// Errors //////////////////
 
@@ -83,21 +111,27 @@ public class Rooms extends TestBase {
 
 	@FindBy(xpath = "//iframe[@title='Book a Room']")
 	private WebElement bodyFrame;
-	
+
 	///////////////////////////////////
-	////highest rated room elements////
+	//// Individual Room Elements ////
 	//////////////////////////////////
+
+	@FindBy(xpath = "//div/div/p/span[@class='strans']")
+	private WebElement roomDescription;
 	
-	@FindBy(xpath="//tr[@class='total']/td/following-sibling::td")
-	WebElement roomPrice;
+	@FindBy(xpath = "//div[2]/div[1]/span[2]")
+	private WebElement roomPerDayPrice;
 	
+	@FindBy(xpath = "//tr[@class='total']/td/following-sibling::td")
+	private WebElement roomTotalPrice;
+
 	////////////////////
 	///// Actions //////
 	///////////////////
 
-	//////////////////////
+	///////////////////////
 	//// Frame changes ////
-	/////////////////////
+	//////////////////////
 
 	public void bodyFrame() {
 		changeFrame(bodyFrame);
@@ -106,7 +140,7 @@ public class Rooms extends TestBase {
 	///////////////////////
 	//// Booking actions///
 	///////////////////////
-	
+
 	public void roomClickCheckIn() throws InterruptedException {
 		click(checkIn);
 	}
@@ -134,10 +168,19 @@ public class Rooms extends TestBase {
 	public void roomSearch() throws InterruptedException {
 		click(searchBtn);
 	}
+
+	public void roomLowestRate() throws InterruptedException {
+		click(roomWithLowestRate);
+	}
+	
+	public void roomMediumRate() throws InterruptedException {
+		click(roomWithMediumRate);
+	}
 	
 	public void roomHighestRate() throws InterruptedException {
 		click(roomWithTheHighestRate);
 	}
+	
 	///////////////// Calendar Actions //////////////////////
 
 	public void nextMonth() throws InterruptedException {
@@ -159,6 +202,14 @@ public class Rooms extends TestBase {
 		Thread.sleep(2000);
 		click(outDay);
 		return this;
+	}
+
+	public String returnCheckInMonth() {
+		return checkInMonth.getText();
+	}
+
+	public String returnCheckOutMonth() {
+		return checkOutMonth.getText();
 	}
 
 	///////////////// Checks ///////////////////////
@@ -224,15 +275,15 @@ public class Rooms extends TestBase {
 
 		return flag;
 	}
-	
+
 	public boolean isPriceRight() {
-		boolean flag= false;
-		if(roomPrice.getText().equals("$620")) {
+		boolean flag = false;
+		if (roomTotalPrice.getText().equals("$620")) {
 			flag = true;
 			System.out.println("Price is right");
 			return flag;
 		}
-		
+
 		System.out.println("Price is not ok");
 		return flag;
 	}
