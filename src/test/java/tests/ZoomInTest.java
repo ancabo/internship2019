@@ -4,9 +4,6 @@ package tests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-
-import com.aventstack.extentreports.model.Log;
-
 import commons.TestBase;
 import commons.DriverHelpers;
 import commons.LogType;
