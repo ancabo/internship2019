@@ -1,15 +1,18 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import commons.TestBase;
+import commons.DriverHelpers;
 
 public class Contact extends TestBase {
 	protected WebDriver driver;
 
+	DriverHelpers d_helper = new DriverHelpers();
 	public Contact (WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -80,7 +83,8 @@ public class Contact extends TestBase {
 	
 	/////////Action on elements////////////////
 	
-	public void changeIframe() throws InterruptedException {
+	public void waitAndChangeIframe() throws InterruptedException {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.xpath("//*[@id='i6lyzjshmapContainer']/iframe"));
 		changeFrame(iframe);
 	}
 	
@@ -105,6 +109,7 @@ public class Contact extends TestBase {
 	
 	public boolean checkZoomIn() {
 		boolean flag = false;
+		
 		String zoomX = mapCoord.getAttribute("right");
 		String zoomY = mapCoord.getAttribute("width");
 		if(zoomX != "280px" || zoomY != "121px") {

@@ -9,11 +9,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import commons.TestBase;
+import commons.DriverHelpers;
 
 public class Header extends TestBase {
 
 	protected WebDriver driver;
-
+	DriverHelpers d_helper = new DriverHelpers();
 	public Header(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -44,30 +45,35 @@ public class Header extends TestBase {
 	///////////////////
 	///// Actions /////
 	//////////////////
-	public void clickHomeLogo() throws InterruptedException {
+	public void waitAndClickHomeLogo() throws InterruptedException {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.xpath("//*[@id=\'i6ksxrtk\']/h1/a"));
 		click(homeLogo);
 	}
 
-	public void clickHome() throws InterruptedException {
+	public void waitAndClickHome() throws InterruptedException {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6kl732v0label"));
 		click(home);
 	}
 
-	public void clickExplore() throws InterruptedException {
+	public void waitAndClickExplore() throws InterruptedException {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6kl732v1label"));
 		click(explore);
 	}
 
-	public void clickRooms() throws InterruptedException {
+	public void waitAndClickRooms() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 5);
 		WebElement rooms = wait.until(ExpectedConditions.elementToBeClickable(By.id("i6kl732v2label")));
 		click(rooms);
 	
 	}
 
-	public void clickContact() throws InterruptedException {
+	public void waitAndClickContact() throws InterruptedException {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6kl732v3label"));
 		contact.click();
 	}
 
-	public void clickBookNow() throws InterruptedException {
+	public void waitAndClickBookNow() throws InterruptedException {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6tj0u8xlabel"));
 		click(book_now);
 	}
 	

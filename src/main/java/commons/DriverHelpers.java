@@ -20,7 +20,8 @@ import commons.TestBase;
 public class DriverHelpers extends TestBase {
 
 	public void changeTab(int index) throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(5000);
+		//fluentWaitElementPresentBy(7,1, By.xpath("//*[@id='js_k']/div/div/div[1]/div[1]/h1/a/span"));
 		ArrayList<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
 		driver.switchTo().window(browserTabs.get(index));
 	}
@@ -31,16 +32,16 @@ public class DriverHelpers extends TestBase {
   }
 
 
-  public void waitUntilElementNotDisplayed(WebElement element) {
+  public void waitUntilElementNotDisplayed(WebElement element) throws InterruptedException {
         Stopwatch stopwatch = Stopwatch.createStarted();
-        while (isElementDisplayed(element) && stopwatch.elapsed(TimeUnit.SECONDS) < TimeoutValues.MINUT_WAIT) {
-               threadSleepJava(1); 
+        while (isElementDisplayed(element) && stopwatch.elapsed(TimeUnit.SECONDS) < 60) {
+               Thread.sleep(1000); 
         }
         stopwatch.stop();
   }
 
   
-  public Boolean isElementDisplayed(WebElement element) {
+  public Boolean isElementDisplayed(WebElement element) throws InterruptedException {
         Boolean flag = false;
         
         for(int i=0; i<=5; i++)   {
@@ -49,7 +50,7 @@ public class DriverHelpers extends TestBase {
                       break;
                } 
                catch (Exception e) {
-                      threadSleepJava(2);                     
+                      Thread.sleep(2000);                     
                }      
         }
         return flag;

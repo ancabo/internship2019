@@ -1,16 +1,17 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import commons.DriverHelpers;
 import commons.TestBase;
-
 public class Footer extends TestBase {
 
 	protected WebDriver driver;
-
+	DriverHelpers d_helper = new DriverHelpers();
 	public Footer(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -19,7 +20,7 @@ public class Footer extends TestBase {
 		//// Elements////
 		////////////////
 
-	@FindBy(id = "i6rlbitx0imagelink")
+	@FindBy(id = "i6rlbitx0imageimageimage")
 	private WebElement fbIcon;
 
 	@FindBy(id = "i6rlbitx1imagelink")
@@ -47,23 +48,29 @@ public class Footer extends TestBase {
 		//// Actions on elements////
 		///////////////////////////
 
-	public void clickFacebookIcon() {
-		fbIcon.click();
+	public void waitAndClickFacebookIcon() {
+		d_helper.fluentWaitElementPresentBy(10, 1, By.xpath("//*[@id='i6rlbitx0imageimageimage']")).click();
+		//d_helper.fluentWait(10, 1,fbIcon).click();s
+		//fbIcon.click();
 	}
 
-	public void clickTwitterIcon() {
+	public void waitAndClickTwitterIcon() {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6rlbitx1imagelink"));
 		twitterIcon.click();
 	}
 
-	public void clickPinterestIcon() {
+	public void waitAndClickPinterestIcon() {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6rlbitx2imagelink"));
 		pinterestIcon.click();
 	}
 
-	public void clickEmailAdress() {
+	public void waitAndClickEmailAdress() {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.xpath("//*[@id='i71ww6nk']/p[1]/object/a"));
 		emailAdress.click();
 	}
 
-	public void clickWixSite() {
+	public void waitAndClickWixSite() {
+		d_helper.fluentWaitElementPresentBy(5, 1, By.xpath("//*[@id='i71wwqnj']/p[2]/span/a"));
 		wixSite.click();
 	}
 
@@ -72,13 +79,13 @@ public class Footer extends TestBase {
 	// Chat button actions and keywords //
 	//////////////////////////////////////
 
-	public void chatFrame() {
+	public void waitAndChangeToChatFrame() {
+		d_helper.fluentWait(5, 1, wixChatFrame);
 		changeFrame(wixChatFrame);
 	}
 	
 	public void setFrameAndClickChat() throws InterruptedException {
-		Thread.sleep(2500);
-		chatFrame();
+		waitAndChangeToChatFrame();
 		click(chatBtn);
 	}
 

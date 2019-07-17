@@ -30,16 +30,12 @@ public class ZoomInTest extends TestBase {
 	}
 
 	@Test(priority = 0)
-	public void zoomIn() throws InterruptedException {
+	public void zoomIn() throws InterruptedException  {
 		SoftAssert zoom = new SoftAssert();
 		logReport(LogType.INFO, "Test1 started.");
-		Thread.sleep(2000);
-		header.clickContact();
-		contact.scrollDown(0, 2500);
-		contact.changeIframe();
-		Thread.sleep(2000);
+		header.waitAndClickContact();
+		contact.waitAndChangeIframe();
 		contact.doubleClickToZoomIn();
-		Thread.sleep(4000);
 		zoom.assertEquals(contact.checkZoomIn(), true);
 		logReport(LogType.INFO, "Zoom test finished.");
 		zoom.assertAll();
@@ -51,15 +47,9 @@ public class ZoomInTest extends TestBase {
 	public void iconFacebook() throws InterruptedException {
 		SoftAssert sa = new SoftAssert();
 		logReport(LogType.INFO, "test2 started");
-		Thread.sleep(1500);
-		header.clickContact();
-		Thread.sleep(2000);
-		contact.scrollDown(0, 3000);
-		Thread.sleep(5000);
-		footer.clickFacebookIcon();
-		Thread.sleep(2000);
+		header.waitAndClickContact();
+		footer.waitAndClickFacebookIcon();
 		d_helper.changeTab(1);
-		//contact.compareCrtUrlToOtherURL("https://www.facebook.com/wix");
 		sa.assertEquals(contact.compareCrtUrlToOtherURL(getCrtURL()), true);
 		logReport(LogType.INFO, "facebook checked");
 		sa.assertAll();
@@ -69,7 +59,7 @@ public class ZoomInTest extends TestBase {
 	public void booking() throws InterruptedException {
 		SoftAssert outDay = new SoftAssert();
 		logReport(LogType.INFO, "test3 started");
-		header.clickRooms();
+		header.waitAndClickRooms();
 		room.scrollDown(0, 2500);
 		room.bodyFrame();
 		room.roomClickCheckIn();
