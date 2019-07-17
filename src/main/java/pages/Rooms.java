@@ -6,11 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import commons.DriverHelpers;
 import commons.TestBase;
 
 public class Rooms extends TestBase {
 
 	protected WebDriver driver;
+	DriverHelpers driverHelper = new DriverHelpers();
 
 	public Rooms(WebDriver driver) {
 		this.driver = driver;
@@ -53,11 +55,13 @@ public class Rooms extends TestBase {
 	private WebElement prevMonth;
 
 	private WebElement inDay;
+
 	private void inDate(String zi) {
 		inDay = driver.findElement(By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
 	}
 
 	private WebElement outDay;
+
 	private void outDate(String zi) {
 		outDay = driver.findElement(By.xpath("//div/div[@name='check_out']//span[contains(text(), " + zi + ")]/.."));
 	}
@@ -75,13 +79,13 @@ public class Rooms extends TestBase {
 
 	@FindBy(xpath = "//ul/li[1]/div/div[1]/img")
 	private WebElement roomWithLowestRate;
-	
+
 	@FindBy(xpath = "//ul/li[2]/div/div[1]/img")
 	private WebElement roomWithMediumRate;
-	
+
 	@FindBy(xpath = "//ul/li[3]/div/div[1]/img")
 	private WebElement roomWithTheHighestRate;
-	
+
 	@FindBy(xpath = "//ul/li[1]/div/div[2]/div[3]/span[2]")
 	private WebElement roomWithLowestRatePrice;
 
@@ -90,14 +94,14 @@ public class Rooms extends TestBase {
 
 	@FindBy(xpath = "//ul/li[3]/div/div[2]/div[3]/span[2]")
 	private WebElement roomWithHighestRatePrice;
-	
+
 	@FindBy(xpath = "//ul/li[1]/div/div/div/p/span[@class='strans']")
 	private WebElement lowRateRoomDescrip;
-	
+
 	@FindBy(xpath = "//ul/li[2]/div/div/div/p/span[@class='strans']")
 	private WebElement mediumRateRoomDescrip;
-	
-	@FindBy (xpath = "//ul/li[3]/div/div/div/p/span[@class='strans']")
+
+	@FindBy(xpath = "//ul/li[3]/div/div/div/p/span[@class='strans']")
 	private WebElement highRateRoomDescrip;
 
 	//////////////// Errors //////////////////
@@ -118,10 +122,10 @@ public class Rooms extends TestBase {
 
 	@FindBy(xpath = "//div/div/p/span[@class='strans']")
 	private WebElement roomDescription;
-	
+
 	@FindBy(xpath = "//div[2]/div[1]/span[2]")
 	private WebElement roomPerDayPrice;
-	
+
 	@FindBy(xpath = "//tr[@class='total']/td/following-sibling::td")
 	private WebElement roomTotalPrice;
 
@@ -172,15 +176,15 @@ public class Rooms extends TestBase {
 	public void roomLowestRate() throws InterruptedException {
 		click(roomWithLowestRate);
 	}
-	
+
 	public void roomMediumRate() throws InterruptedException {
 		click(roomWithMediumRate);
 	}
-	
+
 	public void roomHighestRate() throws InterruptedException {
 		click(roomWithTheHighestRate);
 	}
-	
+
 	///////////////// Calendar Actions //////////////////////
 
 	public void nextMonth() throws InterruptedException {
@@ -199,7 +203,6 @@ public class Rooms extends TestBase {
 
 	public Rooms clickOutDay(String zi) throws InterruptedException {
 		outDate(zi);
-		Thread.sleep(2000);
 		click(outDay);
 		return this;
 	}
@@ -210,6 +213,107 @@ public class Rooms extends TestBase {
 
 	public String returnCheckOutMonth() {
 		return checkOutMonth.getText();
+	}
+
+	/////////////////////////
+	///// Wait and acts//////
+	///////////////////////
+
+	///////////////////////
+	//// Frame changes ////
+	//////////////////////
+
+	public void waitBodyFrame() {
+		changeFrame(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//iframe[@title='Book a Room']")));
+	}
+
+	///////////////////////
+	//// Booking actions///
+	///////////////////////
+
+	public void waitRoomClickCheckIn() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//div[@id='check-in']")));
+	}
+
+	public void waitRoomClickCheckOut() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//div[@id='check-out']")));
+	}
+
+	public void waitRoomIncreaseAdults() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//li[@class='adults']/div/a")));
+	}
+
+	public void waitRoomDecreaseAdults() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1,
+				By.xpath("//li[@class='adults']/div/a/following-sibling::a")));
+	}
+
+	public void waitRoomIncreaseKids() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//li[@class='children']/div/a")));
+	}
+
+	public void waitRoomDecreaseKids() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1,
+				By.xpath("//li[@class='children']/div/a/following-sibling::a")));
+	}
+
+	public void waitRoomSearch() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//button[@class='search s-button']")));
+	}
+
+	public void waitRoomLowestRate() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//ul/li[1]/div/div[1]/img")));
+	}
+
+	public void waitRoomMediumRate() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//ul/li[2]/div/div[1]/img")));
+	}
+
+	public void waitRoomHighestRate() throws InterruptedException {
+
+		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//ul/li[2]/div/div[1]/img")));
+	}
+
+	///////////////// Calendar Actions //////////////////////
+
+	public void waitNextMonth() throws InterruptedException {
+		click(driverHelper.fluentWaitElementPresentBy(10, 1,
+				By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
+	}
+
+//	public void waitPrevMonth() throws InterruptedException {
+//		click(prevMonth);
+//		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("")));
+//	}
+
+	private void waitInDate(String azi) {
+		inDay = driverHelper.fluentWaitElementPresentBy(10, 1,
+				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/.."));
+	}
+
+	private void waitOutDate(String azi) {
+		outDay = driverHelper.fluentWaitElementPresentBy(10, 1,
+				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/.."));
+	}
+
+	public void waitAndClickInDay(String azi) throws InterruptedException {
+		// waitInDate(azi);
+		click(driverHelper.fluentWaitElementPresentBy(10, 1,
+				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/..")));
+	}
+
+	public void waitAndClickOutDay(String zi) throws InterruptedException {
+		waitOutDate(zi);
+		click(outDay);
 	}
 
 	///////////////// Checks ///////////////////////
@@ -230,7 +334,7 @@ public class Rooms extends TestBase {
 
 	public boolean isOutDateGreyed(String zi) {
 		Boolean flag = false;
-		outDate(zi);
+		waitOutDate(zi);
 		if (outDay.getCssValue("opacity").equals("0.5")) {
 			flag = true;
 			System.out.println("The button is greyed out");
@@ -243,7 +347,7 @@ public class Rooms extends TestBase {
 
 	public boolean isInDateClickable(String zi) {
 		Boolean flag = true;
-		inDate(zi);
+		waitInDate(zi);
 		String isDisabled = inDay.getAttribute("disabled");
 		if (isDisabled != null) {
 			flag = false;
@@ -268,9 +372,9 @@ public class Rooms extends TestBase {
 
 	public boolean isOverBook() throws InterruptedException {
 		boolean flag = false;
-		Thread.sleep(1000);
-		changeFrame(bodyFrame);
-		if (error.getText().equals("Sorry, we don’t take bookings over 365 nights. Try a shorter period."))
+		waitBodyFrame();
+		if (driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//div[@class='content-body']/div/p/span"))
+				.getText().equals("Sorry, we don’t take bookings over 365 nights. Try a shorter period."))
 			flag = true;
 
 		return flag;

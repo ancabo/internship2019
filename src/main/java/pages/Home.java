@@ -5,12 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import commons.DriverHelpers;
 //import java.time.LocalDateTime;
 //mport java.time.format.DateTimeFormatter;
 import commons.TestBase;
 
 public class Home extends TestBase {
 	protected WebDriver driver;
+
+	DriverHelpers driveHelper = new DriverHelpers();
 
 	public Home(WebDriver driver) {
 		this.driver = driver;
@@ -21,7 +25,6 @@ public class Home extends TestBase {
 	// DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
 	// String format_azi=data_azi.format(format);
 	// String azi=format_azi.substring(0,2);
-
 
 	//////////////////////
 	/// Booking Elements///
@@ -71,8 +74,6 @@ public class Home extends TestBase {
 		out_day = driver.findElement(By.xpath("//span[contains(text(), " + zi + ")]"));
 	}
 
-	
-	
 	////////////////////////
 	///// Frames //////////
 	//////////////////////
@@ -83,12 +84,9 @@ public class Home extends TestBase {
 	@FindBy(xpath = "//iframe[@class='s_yOSHETPAPopupSkiniframe']")
 	private WebElement calendarFrame;
 
-	
-
 	/////////////////////////
 	// Actions on Elements//
 	///////////////////////
-
 
 	////////////////////////////////////////////////
 	// Booking and Calendar Actions and Keywords //
@@ -119,7 +117,7 @@ public class Home extends TestBase {
 	public void clickInDay(String azi) throws InterruptedException {
 		inDate(azi);
 		click(in_day);
-		calendarFrame();
+		waitForCalendarFrame();
 	}
 
 	public void clickOutDay(String zi) throws InterruptedException {
@@ -131,40 +129,105 @@ public class Home extends TestBase {
 
 	///////////////////////////// Booking keywords ///////////////////////
 
-	public void setFrameAndCheckin() throws InterruptedException {
-		Thread.sleep(7000);
-		bookingFrame();
+	public void setFrameAndCheckIn() throws InterruptedException {
+
+		waitForBookingFrame();
 		clickCheckIn();
 		parentFrame();
-		calendarFrame();
+		waitForCalendarFrame();
 	}
 
 	public void setFrameAndCheckOut() throws InterruptedException {
-		bookingFrame();
+		waitForBookingFrame();
 		click(checkOut);
 		parentFrame();
-		calendarFrame();
+		waitForCalendarFrame();
 	}
 
 	public void setFrameAndClickSearchBtn() throws InterruptedException {
-		bookingFrame();
+		waitForBookingFrame();
 		click(searchBtn);
 		parentFrame();
-		Thread.sleep(3000);
+	}
+
+	////////////////////////
+	///// Wait n acts///////
+	//////////////////////
+
+	public void waitAndClickCheckIn() throws InterruptedException {
+		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.id("check-in")));
+	}
+
+	public void waitAndClickCheckOut() throws InterruptedException {
+		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.id("check-out")));
+	}
+
+	public void waitAndClickSearchBtn() throws InterruptedException {
+		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//span[contains(text(), 'Search')]")));
+	}
+
+	//// Calendar wait acts /////
+
+	public void waitAndNextMonth() throws InterruptedException {
+		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//button[@aria-label='Next month']")));
+	}
+
+	public void waitAndPrevMonth() throws InterruptedException {
+		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//button[@aria-label='Previous month']")));
+	}
+
+	private void waitInDate(String azi) {
+		in_day = driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//span[contains(text(), " + azi + ")]"));
+	}
+
+	private void waitOutDate(String azi) {
+		out_day = driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//span[contains(text(), " + azi + ")]"));
+	}
+
+	public void waitAndClickInDay(String azi) throws InterruptedException {
+		waitInDate(azi);
+		click(in_day);
+		waitForCalendarFrame();
+	}
+
+	public void waitAndClickOutDay(String zi) throws InterruptedException {
+		waitOutDate(zi);
+		click(out_day);
+		parentFrame();
+	}
+
+	public void waitFrameAndCheckIn() throws InterruptedException {
+
+		waitForBookingFrame();
+		waitAndClickCheckIn();
+		parentFrame();
+		waitForCalendarFrame();
+	}
+
+	public void waitFrameAndCheckOut() throws InterruptedException {
+		waitForBookingFrame();
+		waitAndClickCheckOut();
+		parentFrame();
+		waitForCalendarFrame();
+	}
+
+	public void waitFrameAndClickSearchBtn() throws InterruptedException {
+		waitForBookingFrame();
+		waitAndClickSearchBtn();
+		parentFrame();
 	}
 
 	///////////////////////////
 	// Frame Change Actions //
 	//////////////////////////
 
-	public void bookingFrame() {
-		changeFrame(bookerFrame);
+	public void waitForBookingFrame() {
+		changeFrame(driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//iframe[@title='Wix Hotels']")));
 	}
 
-	public void calendarFrame() {
-		changeFrame(calendarFrame);
+	public void waitForCalendarFrame() {
+		changeFrame(driveHelper.fluentWaitElementPresentBy(10, 1,
+				By.xpath("//iframe[@class='s_yOSHETPAPopupSkiniframe']")));
 	}
-
-	
 
 }
