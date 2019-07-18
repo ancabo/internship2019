@@ -127,8 +127,6 @@ public class TestBase {
 	
 	public void click(WebElement element) throws InterruptedException {
 		element.click();
-		Thread.sleep(1300);
-	
 	}
 
 	public void parentFrame() {

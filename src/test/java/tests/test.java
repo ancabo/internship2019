@@ -64,7 +64,7 @@ public class test extends TestBase {
 		// SoftAssert outDateGreyed = new SoftAssert();
 		// SoftAssert correctTimeFrame = new SoftAssert();
 		Thread.sleep(4000);
-		header.clickRooms();
+		header.waitAndClickRooms();
 		// Thread.sleep(2000);
 		room.waitBodyFrame();
 		room.waitRoomClickCheckIn();

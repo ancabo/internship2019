@@ -34,6 +34,8 @@ public class ZoomInTest extends TestBase {
 		SoftAssert zoom = new SoftAssert();
 		logReport(LogType.INFO, "Test1 started.");
 		header.waitAndClickContact();
+	//	contact.scrollDown(0, 3000);
+		//Thread.sleep(2000);
 		contact.waitAndChangeIframe();
 		contact.doubleClickToZoomIn();
 		zoom.assertEquals(contact.checkZoomIn(), true);
@@ -42,12 +44,11 @@ public class ZoomInTest extends TestBase {
 		
 		
 	}
-
 	@Test(priority = 1)
 	public void iconFacebook() throws InterruptedException {
 		SoftAssert sa = new SoftAssert();
 		logReport(LogType.INFO, "test2 started");
-		header.waitAndClickContact();
+		//header.waitAndClickContact();
 		footer.waitAndClickFacebookIcon();
 		d_helper.changeTab(1);
 		sa.assertEquals(contact.compareCrtUrlToOtherURL(getCrtURL()), true);
@@ -60,10 +61,9 @@ public class ZoomInTest extends TestBase {
 		SoftAssert outDay = new SoftAssert();
 		logReport(LogType.INFO, "test3 started");
 		header.waitAndClickRooms();
-		room.scrollDown(0, 2500);
-		room.bodyFrame();
-		room.roomClickCheckIn();
-		room.nextMonth();
+		room.waitBodyFrame();
+		room.waitRoomClickCheckIn();
+		room.waitNextMonth();
 		room.clickInDay("25");
 	
 		outDay.assertEquals(room.isOutDateClickable("24"), false);
@@ -71,16 +71,16 @@ public class ZoomInTest extends TestBase {
 	
 		outDay.assertEquals(room.isOutDateGreyed("24"), true);
 		
-		room.clickOutDay("31");
+		room.waitAndClickOutDay("31");
 		
-		room.roomIncreaseAdults();
-		room.roomSearch();
+		room.waitRoomIncreaseAdults();
+		room.waitRoomSearch();
 		
 		outDay.assertEquals(room.isCorrectTimeFrame(), true);
 		logReport(LogType.INFO, "Period booking is checked");
 		
-		room.scrollDown(0, 5000);
-		room.roomHighestRate();
+
+		room.waitRoomHighestRate();
 		
 		
 		outDay.assertEquals(room.isOutDateClickable("25+2"), false);
@@ -91,4 +91,5 @@ public class ZoomInTest extends TestBase {
 		logReport(LogType.INFO, "Price checked.");
 		outDay.assertAll();
 	}
+
 }

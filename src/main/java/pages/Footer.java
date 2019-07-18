@@ -49,28 +49,28 @@ public class Footer extends TestBase {
 		///////////////////////////
 
 	public void waitAndClickFacebookIcon() {
-		d_helper.fluentWaitElementPresentBy(10, 1, By.xpath("//*[@id='i6rlbitx0imageimageimage']")).click();
+		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='i6rlbitx0imageimageimage']")).click();
 		//d_helper.fluentWait(10, 1,fbIcon).click();s
 		//fbIcon.click();
 	}
 
 	public void waitAndClickTwitterIcon() {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6rlbitx1imagelink"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.id("i6rlbitx1imagelink"));
 		twitterIcon.click();
 	}
 
 	public void waitAndClickPinterestIcon() {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6rlbitx2imagelink"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.id("i6rlbitx2imagelink"));
 		pinterestIcon.click();
 	}
 
 	public void waitAndClickEmailAdress() {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.xpath("//*[@id='i71ww6nk']/p[1]/object/a"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='i71ww6nk']/p[1]/object/a"));
 		emailAdress.click();
 	}
 
 	public void waitAndClickWixSite() {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.xpath("//*[@id='i71wwqnj']/p[2]/span/a"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='i71wwqnj']/p[2]/span/a"));
 		wixSite.click();
 	}
 
@@ -80,7 +80,7 @@ public class Footer extends TestBase {
 	//////////////////////////////////////
 
 	public void waitAndChangeToChatFrame() {
-		d_helper.fluentWait(5, 1, wixChatFrame);
+		d_helper.fluentWait(15, 1, wixChatFrame);
 		changeFrame(wixChatFrame);
 	}
 	

@@ -34,11 +34,8 @@ public class DriverHelpers extends TestBase {
 
   public void waitUntilElementNotDisplayed(WebElement element) throws InterruptedException {
         Stopwatch stopwatch = Stopwatch.createStarted();
-<<<<<<< Updated upstream
         while (isElementDisplayed(element) && stopwatch.elapsed(TimeUnit.SECONDS) < 60) {
-=======
-        while (isElementDisplayed(element) && stopwatch.elapsed(TimeUnit.SECONDS) < 6000) {
->>>>>>> Stashed changes
+
                Thread.sleep(1000); 
         }
         stopwatch.stop();
@@ -54,11 +51,8 @@ public class DriverHelpers extends TestBase {
                       break;
                } 
                catch (Exception e) {
-<<<<<<< Updated upstream
                       Thread.sleep(2000);                     
-=======
-            	   Thread.sleep(2000);                      
->>>>>>> Stashed changes
+
                }      
         }
         return flag;

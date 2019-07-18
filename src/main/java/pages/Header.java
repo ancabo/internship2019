@@ -46,17 +46,17 @@ public class Header extends TestBase {
 	///// Actions /////
 	//////////////////
 	public void waitAndClickHomeLogo() throws InterruptedException {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.xpath("//*[@id=\'i6ksxrtk\']/h1/a"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id=\'i6ksxrtk\']/h1/a"));
 		click(homeLogo);
 	}
 
 	public void waitAndClickHome() throws InterruptedException {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6kl732v0label"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.id("i6kl732v0label"));
 		click(home);
 	}
 
 	public void waitAndClickExplore() throws InterruptedException {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6kl732v1label"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.id("i6kl732v1label"));
 		click(explore);
 	}
 
@@ -73,7 +73,7 @@ public class Header extends TestBase {
 	}
 
 	public void waitAndClickBookNow() throws InterruptedException {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6tj0u8xlabel"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.id("i6tj0u8xlabel"));
 		click(book_now);
 	}
 	
