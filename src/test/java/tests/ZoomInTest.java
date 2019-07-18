@@ -4,6 +4,7 @@ package tests;
 import java.io.IOException;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import commons.TestBase;
@@ -14,6 +15,7 @@ import pages.Contact;
 import pages.Rooms;
 import pages.Header;
 import pages.Footer;
+@Listeners(commons.ListenersTest.class)
 
 public class ZoomInTest extends TestBase {
 
@@ -87,7 +89,8 @@ public class ZoomInTest extends TestBase {
 		
 
 		room.waitRoomHighestRate();
-		
+		Thread.sleep(1500);
+		room.waitRoomClickCheckOut();
 		
 		outDay.assertEquals(room.isOutDateClickable("25+2"), false);
 		logReport(LogType.INFO, "out date checked.");

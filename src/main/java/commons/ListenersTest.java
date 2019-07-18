@@ -10,13 +10,11 @@ public class ListenersTest implements ITestListener {
 
 	@Override
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -25,7 +23,7 @@ public class ListenersTest implements ITestListener {
 		try {
 			CaptureScreenShot.captureScreen(TestBase.driver, CaptureScreenShot.generateFileName(result));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+	
 			e.printStackTrace();
 		}
 
@@ -33,26 +31,22 @@ public class ListenersTest implements ITestListener {
 
 	@Override
 	public void onTestSkipped(ITestResult result) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
-
+	
 	}
 
 	@Override
 	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 }
