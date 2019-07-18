@@ -86,7 +86,7 @@ public class Footer extends TestBase {
 	
 	public void setFrameAndClickChat() throws InterruptedException {
 		waitAndChangeToChatFrame();
-		click(chatBtn);
+		click(d_helper.fluentWaitElementPresentBy(10, 1, By.xpath("//*[@class='_2wjrm']")));
 	}
 
 	/////////////////////// Chat button keywords //////////////////////

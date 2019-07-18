@@ -51,6 +51,7 @@ public class test extends TestBase {
 		logReport(LogType.INFO, "Chat button test started.");
 		SoftAssert chatWorks = new SoftAssert();
 		footer.setFrameAndClickChat();
+		Thread.sleep(1000);
 		chatWorks.assertEquals(footer.isChatOpen(), true);
 		logReport(LogType.INFO, "Chat button functionality verrified.");
 		chatWorks.assertAll();
@@ -61,12 +62,14 @@ public class test extends TestBase {
 	public void bookingRoomVerify() throws InterruptedException {
 		SoftAssert softAssert = new SoftAssert();
 		logReport(LogType.INFO, "Room booking test started");
+
 		// SoftAssert outDateGreyed = new SoftAssert();
 		// SoftAssert correctTimeFrame = new SoftAssert();
-		Thread.sleep(4000);
+
+		// Thread.sleep(4000);
 		header.waitAndClickRooms();
-		// Thread.sleep(2000);
-		room.waitBodyFrame();
+		Thread.sleep(1000);
+		room.bodyFrame();
 		room.waitRoomClickCheckIn();
 
 		// calendar opens, calendar selection starts
@@ -88,7 +91,6 @@ public class test extends TestBase {
 		room.waitAndClickOutDay("31");
 		// Thread.sleep(1000);
 		room.waitRoomIncreaseAdults();
-		// Thread.sleep(1000);
 		room.waitRoomSearch();
 
 		// we verify the timeframe is correct
@@ -96,7 +98,8 @@ public class test extends TestBase {
 		logReport(LogType.INFO, "Verification of the timeframe is complete.");
 
 		// click highest rate room
-		room.roomHighestRate();
+		room.waitRoomHighestRate();
+		Thread.sleep(1500);
 		room.waitRoomClickCheckOut();
 		softAssert.assertEquals(room.isOutDateClickable("27"), false);
 		logReport(LogType.INFO, "Verification that the outdate is unclickableon the desired room page is complete.");

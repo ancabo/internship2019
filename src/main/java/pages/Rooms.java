@@ -224,7 +224,9 @@ public class Rooms extends TestBase {
 	//////////////////////
 
 	public void waitBodyFrame() {
+
 		changeFrame(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//iframe[@title='Book a Room']")));
+
 	}
 
 	///////////////////////
@@ -280,13 +282,16 @@ public class Rooms extends TestBase {
 
 	public void waitRoomHighestRate() throws InterruptedException {
 
-		click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='content']/div/div[2]/div/ul/li[3]/div/div[1]/img")));
+		click(driverHelper.fluentWaitElementPresentBy(15, 1,
+				By.xpath("//*[@id='content']/div/div[2]/div/ul/li[3]/div/div[1]/img")));
+
 	}
 
 	///////////////// Calendar Actions //////////////////////
 
 	public void waitNextMonth() throws InterruptedException {
-		click(driverHelper.fluentWaitElementPresentBy(15, 1,By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
+		click(driverHelper.fluentWaitElementPresentBy(30, 1,
+				By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
 	}
 
 //	public void waitPrevMonth() throws InterruptedException {
@@ -305,8 +310,11 @@ public class Rooms extends TestBase {
 	}
 
 	public void waitAndClickInDay(String azi) throws InterruptedException {
-		// waitInDate(azi);
-		click(driverHelper.fluentWaitElementPresentBy(15, 1,By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/..")));
+		driverHelper.waitForElementVisibility(
+				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + azi + ")]/.."));
+		inDate(azi);
+		click(inDay);
+
 	}
 
 	public void waitAndClickOutDay(String zi) throws InterruptedException {
@@ -380,7 +388,8 @@ public class Rooms extends TestBase {
 
 	public boolean isPriceRight() {
 		boolean flag = false;
-		if (driverHelper.fluentWaitElementPresentBy(5, 1, By.xpath("//tr[@class='total']/td/following-sibling::td")).getText().equals("$620")) {
+		if (driverHelper.fluentWaitElementPresentBy(5, 1, By.xpath("//tr[@class='total']/td/following-sibling::td"))
+				.getText().equals("$620")) {
 			flag = true;
 			System.out.println("Price is right");
 			return flag;
