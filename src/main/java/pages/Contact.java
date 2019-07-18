@@ -1,5 +1,7 @@
 package pages;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -7,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import commons.TestBase;
+import commons.CaptureScreenShot;
 import commons.DriverHelpers;
 
 public class Contact extends TestBase {
@@ -108,7 +111,7 @@ public class Contact extends TestBase {
 	}
 	
 	
-	public boolean checkZoomIn() {
+	public boolean checkZoomIn() throws IOException {
 		boolean flag = false;
 		
 		String zoomX = mapCoord.getAttribute("right");
@@ -116,9 +119,11 @@ public class Contact extends TestBase {
 		if(zoomX != "280px" || zoomY != "121px") {
 			flag = true;
 			System.out.println("The map is zoomed");
+			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("Map is zoomed"));
 			return flag;
 		}
 		System.out.println("Zoom does not work");
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("Zoom map doesn't work"));
 		return flag;
 	}
 	

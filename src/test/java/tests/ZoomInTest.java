@@ -7,6 +7,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import commons.TestBase;
+import commons.CaptureScreenShot;
 import commons.DriverHelpers;
 import commons.LogType;
 import pages.Contact;
@@ -32,13 +33,14 @@ public class ZoomInTest extends TestBase {
 	}
 
 	@Test(priority = 0)
-	public void zoomIn() throws InterruptedException  {
+	public void zoomIn() throws InterruptedException, IOException  {
 		SoftAssert zoom = new SoftAssert();
 		logReport(LogType.INFO, "Test1 started.");
 		header.waitAndClickContact();
 	//	contact.scrollDown(0, 3000);
 		//Thread.sleep(2000);
 		contact.waitAndChangeIframe();
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("Map isn't zoomed"));
 		contact.doubleClickToZoomIn();
 		zoom.assertEquals(contact.checkZoomIn(), true);
 		logReport(LogType.INFO, "Zoom test finished.");
@@ -47,12 +49,14 @@ public class ZoomInTest extends TestBase {
 		
 	}
 	@Test(priority = 1)
-	public void iconFacebook() throws InterruptedException {
+	public void iconFacebook() throws InterruptedException, IOException {
 		SoftAssert sa = new SoftAssert();
 		logReport(LogType.INFO, "test2 started");
 		//header.waitAndClickContact();
 		footer.waitAndClickFacebookIcon();
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("First tab is displayed."));
 		d_helper.changeTab(1);
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("Second tab is displayed"));
 		sa.assertEquals(contact.compareCrtUrlToOtherURL(getCrtURL()), true);
 		logReport(LogType.INFO, "facebook checked");
 		sa.assertAll();
