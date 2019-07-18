@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -15,6 +16,8 @@ import pages.Header;
 import pages.Home;
 import pages.Rooms;
 import pages.Footer;
+
+@Listeners(commons.ListenersTest.class)
 
 public class test extends TestBase {
 
@@ -49,7 +52,6 @@ public class test extends TestBase {
 		noOverbooking.assertAll();
 
 	}
-
 
 	@Test
 	public void checkChatButton() throws InterruptedException, IOException {
@@ -106,13 +108,13 @@ public class test extends TestBase {
 		room.waitRoomHighestRate();
 		Thread.sleep(1500);
 		room.waitRoomClickCheckOut();
-		
+
 		softAssert.assertEquals(room.isOutDateClickable("27"), false);
 		logReport(LogType.INFO, "Verification that the outdate is unclickable on the desired room page is complete.");
-		
+
 		softAssert.assertEquals(room.isPriceRight(), true);
 		logReport(LogType.INFO, "Verification of the total price is complete.");
-		
+
 		softAssert.assertAll();
 
 	}
