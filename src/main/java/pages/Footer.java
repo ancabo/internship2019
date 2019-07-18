@@ -1,11 +1,14 @@
 package pages;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import commons.CaptureScreenShot;
 import commons.DriverHelpers;
 import commons.TestBase;
 public class Footer extends TestBase {
@@ -91,12 +94,16 @@ public class Footer extends TestBase {
 
 	/////////////////////// Chat button keywords //////////////////////
 
-	public boolean isChatOpen() {
+	public boolean isChatOpen() throws IOException {
 		String chatVal;
 		chatVal = chatWidget.getAttribute("aria-expanded");
-		if (chatVal.equals("true"))
+		if (chatVal.equals("true")) {
+			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("in_date unclickable"));
 			return true;
-		else
+		}
+		else {
+			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("chat window not there"));
 			return false;
+		}
 	}
 }

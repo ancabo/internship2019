@@ -1,11 +1,14 @@
 package pages;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import commons.CaptureScreenShot;
 import commons.DriverHelpers;
 import commons.TestBase;
 
@@ -351,51 +354,60 @@ public class Rooms extends TestBase {
 		return flag;
 	}
 
-	public boolean isInDateClickable(String zi) {
+	public boolean isInDateClickable(String zi) throws IOException {
 		Boolean flag = true;
 		waitInDate(zi);
 		String isDisabled = inDay.getAttribute("disabled");
 		if (isDisabled != null) {
 			flag = false;
 			System.out.println("Date is not clickable");
+			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("in_date unclickable"));
 			return flag;
 		}
 
 		System.out.println("Date is clickable!");
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("in_date clickable"));
 		return flag;
 	}
 
-	public boolean isCorrectTimeFrame() {
+	public boolean isCorrectTimeFrame() throws IOException {
 		Boolean flag = false;
 		if (periodBooking.getText().equals("Aug 25-31, 2019 | 6 night(s)")) {
 			flag = true;
 			System.out.println("Correct timeframe");
+			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("correct timeframe"));
 			return flag;
 		}
 		System.out.println("Incorect timeframe");
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("incorrect timeframe"));
 		return flag;
 	}
 
-	public boolean isOverBook() throws InterruptedException {
+	public boolean isOverBook() throws InterruptedException, IOException {
 		boolean flag = false;
 		waitBodyFrame();
 		if (driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//div[@class='content-body']/div/p/span"))
-				.getText().equals("Sorry, we don’t take bookings over 365 nights. Try a shorter period."))
+				.getText().equals("Sorry, we don’t take bookings over 365 nights. Try a shorter period.")) {
+			
 			flag = true;
-
+			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("overbook message"));
+		}
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("no overbook message"));
 		return flag;
 	}
 
-	public boolean isPriceRight() {
+	public boolean isPriceRight() throws IOException {
 		boolean flag = false;
 		if (driverHelper.fluentWaitElementPresentBy(5, 1, By.xpath("//tr[@class='total']/td/following-sibling::td"))
 				.getText().equals("$620")) {
 			flag = true;
 			System.out.println("Price is right");
+			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("total price - right"));
 			return flag;
 		}
 
 		System.out.println("Price is not ok");
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("total price not ok"));
 		return flag;
 	}
 

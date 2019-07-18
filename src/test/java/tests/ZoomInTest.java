@@ -1,6 +1,8 @@
 package tests;
 
 
+import java.io.IOException;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -57,7 +59,7 @@ public class ZoomInTest extends TestBase {
 	}
 
 	@Test(priority = 2)
-	public void booking() throws InterruptedException {
+	public void booking() throws InterruptedException, IOException {
 		SoftAssert outDay = new SoftAssert();
 		logReport(LogType.INFO, "test3 started");
 		header.waitAndClickRooms();

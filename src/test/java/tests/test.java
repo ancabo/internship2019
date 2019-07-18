@@ -1,9 +1,13 @@
 package tests;
 
+import java.io.IOException;
+
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import commons.CaptureScreenShot;
 import commons.Helpers;
 import commons.LogType;
 import commons.TestBase;
@@ -30,7 +34,7 @@ public class test extends TestBase {
 	}
 
 	@Test
-	public void bookOverOneYear() throws InterruptedException {
+	public void bookOverOneYear() throws InterruptedException, IOException {
 		logReport(LogType.INFO, "Booking test started started.");
 		SoftAssert noOverbooking = new SoftAssert();
 		home.waitFrameAndCheckIn();
@@ -46,20 +50,21 @@ public class test extends TestBase {
 
 	}
 
+
 	@Test
-	public void checkChatButton() throws InterruptedException {
+	public void checkChatButton() throws InterruptedException, IOException {
 		logReport(LogType.INFO, "Chat button test started.");
 		SoftAssert chatWorks = new SoftAssert();
 		footer.setFrameAndClickChat();
 		Thread.sleep(1000);
 		chatWorks.assertEquals(footer.isChatOpen(), true);
-		logReport(LogType.INFO, "Chat button functionality verrified.");
+		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("chat window"));
 		chatWorks.assertAll();
 
 	}
 
 	@Test
-	public void bookingRoomVerify() throws InterruptedException {
+	public void bookingRoomVerify() throws InterruptedException, IOException {
 		SoftAssert softAssert = new SoftAssert();
 		logReport(LogType.INFO, "Room booking test started");
 
@@ -101,10 +106,13 @@ public class test extends TestBase {
 		room.waitRoomHighestRate();
 		Thread.sleep(1500);
 		room.waitRoomClickCheckOut();
+		
 		softAssert.assertEquals(room.isOutDateClickable("27"), false);
-		logReport(LogType.INFO, "Verification that the outdate is unclickableon the desired room page is complete.");
+		logReport(LogType.INFO, "Verification that the outdate is unclickable on the desired room page is complete.");
+		
 		softAssert.assertEquals(room.isPriceRight(), true);
 		logReport(LogType.INFO, "Verification of the total price is complete.");
+		
 		softAssert.assertAll();
 
 	}
