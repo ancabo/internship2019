@@ -10,11 +10,13 @@ import org.openqa.selenium.support.PageFactory;
 
 import commons.CaptureScreenShot;
 import commons.DriverHelpers;
+import commons.Helpers;
 import commons.TestBase;
 
 public class Rooms extends TestBase {
 
 	protected WebDriver driver;
+	Helpers helper = new Helpers();
 	DriverHelpers driverHelper = new DriverHelpers();
 
 	public Rooms(WebDriver driver) {
@@ -239,7 +241,8 @@ public class Rooms extends TestBase {
 	public void waitRoomClickCheckIn() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//div[@id='check-in']"));
 		click(checkIn);
-		//click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//div[@id='check-in']")));
+		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
+		// By.xpath("//div[@id='check-in']")));
 	}
 
 	public void waitRoomClickCheckOut() throws InterruptedException {
@@ -294,7 +297,8 @@ public class Rooms extends TestBase {
 	///////////////// Calendar Actions //////////////////////
 
 	public void waitNextMonth() throws InterruptedException {
-		click(driverHelper.fluentWaitElementPresentBy(30, 1, By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
+		click(driverHelper.fluentWaitElementPresentBy(30, 1,
+				By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
 	}
 
 //	public void waitPrevMonth() throws InterruptedException {
@@ -388,7 +392,7 @@ public class Rooms extends TestBase {
 		waitBodyFrame();
 		if (driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//div[@class='content-body']/div/p/span"))
 				.getText().equals("Sorry, we don’t take bookings over 365 nights. Try a shorter period.")) {
-			
+
 			flag = true;
 			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("overbook message"));
 		}
@@ -411,4 +415,30 @@ public class Rooms extends TestBase {
 		return flag;
 	}
 
+/////////////////keyword////////////
+	public String checkInXL() throws IOException {
+		return helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019", "bookerDate_test.xls",
+				"CHECK-IN");
+	}
+
+	public String preCheckInXL(int days) throws IOException {
+		String checkInString = helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019",
+				"bookerDate_test.xls", "CHECK-IN");
+		double checkInDaysPrior = Double.valueOf(checkInString) - days;
+		return String.valueOf(checkInDaysPrior);
+
+	}
+
+	public String preCheckOutXL(int days) throws IOException {
+		String checkOutString = helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019",
+				"bookerDate_test.xls", "CHECK-OUT");
+		double checkInDaysPrior = Double.valueOf(checkOutString) - days;
+		return String.valueOf(checkInDaysPrior);
+
+	}
+
+	public String checkOutXL() throws IOException {
+		return helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019", "bookerDate_test.xls",
+				"CHECK-OUT");
+	}
 }

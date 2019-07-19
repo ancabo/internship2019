@@ -82,22 +82,20 @@ public class test extends TestBase {
 		// calendar opens, calendar selection starts
 		// Thread.sleep(1000);
 		room.waitNextMonth();
-		room.waitAndClickInDay(helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019",
-				"bookerDate_test.xls", "CHECK-IN"));
+		room.waitAndClickInDay(room.checkInXL());
 
 		//// it moves automatically to checkout calendar selection
 		//// We verify if the date 24 august is clickable
 		// Thread.sleep(1000);
-		softAssert.assertEquals(room.isOutDateClickable("24"), false);
+		softAssert.assertEquals(room.isOutDateClickable(room.preCheckInXL(1)), false);
 		logReport(LogType.INFO, "Verification that the button is unclickable complete.");
 
 		// verify color
-		softAssert.assertEquals(room.isOutDateGreyed("24"), true);
+		softAssert.assertEquals(room.isOutDateGreyed(room.preCheckInXL(1)), true);
 		logReport(LogType.INFO, "Verification that the button greyed out is complete.");
 
 		///// set check out to 31 aug
-		room.waitAndClickOutDay(helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019",
-				"bookerDate_test.xls", "CHECK-OUT"));
+		room.waitAndClickOutDay(room.checkOutXL());
 		// Thread.sleep(1000);
 		room.waitRoomIncreaseAdults();
 		room.waitRoomSearch();
@@ -111,7 +109,7 @@ public class test extends TestBase {
 		Thread.sleep(1500);
 		room.waitRoomClickCheckOut();
 
-		softAssert.assertEquals(room.isOutDateClickable("27"), false);
+		softAssert.assertEquals(room.isOutDateClickable(room.preCheckOutXL(4)), false);
 		logReport(LogType.INFO, "Verification that the outdate is unclickable on the desired room page is complete.");
 
 		softAssert.assertEquals(room.isPriceRight(), true);
