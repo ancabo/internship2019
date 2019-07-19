@@ -20,6 +20,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
+import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
@@ -55,7 +56,7 @@ public class TestBase {
 		
 //		String methodParams ="";
         
-        //default IE browser
+		//default IE browser
        // useBrowser();
 //        if(parameters.length != 0){
 //               if(method.getName().contains("AdHoc")){
@@ -74,7 +75,7 @@ public class TestBase {
 	}
 
 	@AfterMethod(alwaysRun = true)
-	public void afterMethod(ITestResult result) throws IOException {
+	public void afterMethod(ITestResult result) throws Exception {
 		System.out.println("EXECUTION FINISHED FOR: " + result.getName());
 //		String screenShot;
 //        if(driver != null){
@@ -87,6 +88,11 @@ public class TestBase {
         System.out.println("FAILED TEST: " + result.getName());
         System.out.println(result.getThrowable().toString());
         test.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().toString(), ExtentColor.RED));
+        test.log(Status.FAIL, "Test Case Failed is "+result.getName());
+		 test.log(Status.FAIL, "Test Case Failed is "+result.getThrowable());
+		 String screenshotPath = CaptureScreenShot.getScreenshot(driver, result.getName());
+		 // add it in the extent report 
+		 test.addScreenCaptureFromPath(screenshotPath);
     //    test.addScreenCaptureFromPath(screenShot);
         
 //        if(driver != null){
@@ -104,6 +110,19 @@ public class TestBase {
    
    extent.flush();
 	}
+	 
+//	//public void getResult(ITestResult result) throws Exception{
+//		 if(result.getStatus() == ITestResult.FAILURE) {
+//		 test.log(Status.FAIL, "Test Case Failed is "+result.getName());
+//		 test.log(Status.FAIL, "Test Case Failed is "+result.getThrowable());
+//		 String screenshotPath = CaptureScreenShot.getScreenshot(driver, result.getName());
+//		 // add it in the extent report 
+//		 test.log(Status.FAIL, (Markup) test.addScreenCaptureFromPath(screenshotPath));
+//		 }
+//		 else 
+//			 System.out.println("PASSED TEST: " + result.getName());
+//		
+//		 }
 
 	@AfterTest(alwaysRun = true)
 	public void quitDriver() {
