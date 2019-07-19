@@ -3,6 +3,7 @@ package tests;
 
 import java.io.IOException;
 
+import org.eclipse.jetty.io.ClientConnectionFactory.Helper;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -10,11 +11,13 @@ import org.testng.asserts.SoftAssert;
 import commons.TestBase;
 import commons.CaptureScreenShot;
 import commons.DriverHelpers;
+import commons.Helpers;
 import commons.LogType;
 import pages.Contact;
 import pages.Rooms;
 import pages.Header;
 import pages.Footer;
+
 @Listeners(commons.ListenersTest.class)
 
 public class ZoomInTest extends TestBase {
@@ -24,6 +27,7 @@ public class ZoomInTest extends TestBase {
 	Header header;
 	Rooms room;
 	Footer footer;
+	Helpers helper;
 
 	@BeforeMethod
 	public void elements() {
@@ -32,6 +36,7 @@ public class ZoomInTest extends TestBase {
 		header = new Header(driver);
 		room = new Rooms(driver);
 		footer = new Footer(driver);
+		helper = new Helpers();
 	}
 
 	@Test(priority = 0)
@@ -72,14 +77,15 @@ public class ZoomInTest extends TestBase {
 		room.waitBodyFrame();
 		room.waitRoomClickCheckIn();
 		room.waitNextMonth();
-		room.clickInDay("25");
+		//helper.readFromAFile();
+		room.clickInDay(helper.readFromAFile(0));
 	
-		outDay.assertEquals(room.isOutDateClickable("24"), false);
+		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(1)), false);
 		logReport(LogType.INFO, "Click out date checked.");
 	
-		outDay.assertEquals(room.isOutDateGreyed("24"), true);
+		outDay.assertEquals(room.isOutDateGreyed(helper.readFromAFile(1)), true);
 		
-		room.waitAndClickOutDay("31");
+		room.waitAndClickOutDay(helper.readFromAFile(2));
 		
 		room.waitRoomIncreaseAdults();
 		room.waitRoomSearch();
@@ -92,7 +98,7 @@ public class ZoomInTest extends TestBase {
 		Thread.sleep(1500);
 		room.waitRoomClickCheckOut();
 		
-		outDay.assertEquals(room.isOutDateClickable("25+2"), false);
+		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(3)), false);
 		logReport(LogType.INFO, "out date checked.");
 	
 		

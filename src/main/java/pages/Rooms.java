@@ -293,8 +293,7 @@ public class Rooms extends TestBase {
 	///////////////// Calendar Actions //////////////////////
 
 	public void waitNextMonth() throws InterruptedException {
-		click(driverHelper.fluentWaitElementPresentBy(30, 1,
-				By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
+		click(driverHelper.fluentWaitElementPresentBy(30, 1, By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
 	}
 
 //	public void waitPrevMonth() throws InterruptedException {
