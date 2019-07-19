@@ -237,8 +237,9 @@ public class Rooms extends TestBase {
 	///////////////////////
 
 	public void waitRoomClickCheckIn() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//div[@id='check-in']")));
+		driverHelper.waitForElementVisibility(By.xpath("//div[@id='check-in']"));
+		click(checkIn);
+		//click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//div[@id='check-in']")));
 	}
 
 	public void waitRoomClickCheckOut() throws InterruptedException {

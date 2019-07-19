@@ -82,7 +82,8 @@ public class test extends TestBase {
 		// calendar opens, calendar selection starts
 		// Thread.sleep(1000);
 		room.waitNextMonth();
-		room.waitAndClickInDay("25");
+		room.waitAndClickInDay(helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019",
+				"bookerDate_test.xls", "CHECK-IN"));
 
 		//// it moves automatically to checkout calendar selection
 		//// We verify if the date 24 august is clickable
@@ -95,7 +96,8 @@ public class test extends TestBase {
 		logReport(LogType.INFO, "Verification that the button greyed out is complete.");
 
 		///// set check out to 31 aug
-		room.waitAndClickOutDay("31");
+		room.waitAndClickOutDay(helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019",
+				"bookerDate_test.xls", "CHECK-OUT"));
 		// Thread.sleep(1000);
 		room.waitRoomIncreaseAdults();
 		room.waitRoomSearch();
