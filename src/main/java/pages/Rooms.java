@@ -417,12 +417,13 @@ public class Rooms extends TestBase {
 
 /////////////////keyword////////////
 	public String checkInXL() throws IOException {
-		return helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019", "bookerDate_test.xls",
+	System.out.println(System.getProperty("user.dir"));
+		return helper.readFromExcel(System.getProperty("user.dir"), "bookerDate_test.xls",
 				"CHECK-IN");
 	}
 
 	public String preCheckInXL(int days) throws IOException {
-		String checkInString = helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019",
+		String checkInString = helper.readFromExcel(System.getProperty("user.dir"),
 				"bookerDate_test.xls", "CHECK-IN");
 		double checkInDaysPrior = Double.valueOf(checkInString) - days;
 		return String.valueOf(checkInDaysPrior);
@@ -430,7 +431,7 @@ public class Rooms extends TestBase {
 	}
 
 	public String preCheckOutXL(int days) throws IOException {
-		String checkOutString = helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019",
+		String checkOutString = helper.readFromExcel(System.getProperty("user.dir"),
 				"bookerDate_test.xls", "CHECK-OUT");
 		double checkInDaysPrior = Double.valueOf(checkOutString) - days;
 		return String.valueOf(checkInDaysPrior);
@@ -438,7 +439,7 @@ public class Rooms extends TestBase {
 	}
 
 	public String checkOutXL() throws IOException {
-		return helper.readFromExcel("C:\\Users\\z0043day\\eclipse-workspace\\internship2019", "bookerDate_test.xls",
+		return helper.readFromExcel(System.getProperty("user.dir"), "bookerDate_test.xls",
 				"CHECK-OUT");
 	}
 }
