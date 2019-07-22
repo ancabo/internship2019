@@ -1,8 +1,7 @@
 package commons;
 
-import java.io.IOException;
+//import java.io.IOException;
 import java.lang.reflect.Method;
-
 
 import org.openqa.selenium.JavascriptExecutor;
 
@@ -20,18 +19,15 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
-import com.aventstack.extentreports.markuputils.Markup;
+//import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
-
-
 public class TestBase {
 	public static WebDriver driver;
-    public static ExtentHtmlReporter htmlReporter;
-    public static ExtentReports extent;
-    public static ExtentTest test;
-  
+	public static ExtentHtmlReporter htmlReporter;
+	public static ExtentReports extent;
+	public static ExtentTest test;
 
 ///////////////////////////////////////
 // Driver Related Methods ////////////
@@ -43,21 +39,20 @@ public class TestBase {
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
 		htmlReporter = new ExtentHtmlReporter("./FirstReport.html");
-        htmlReporter.config().setDocumentTitle("First Test Automation Report");
-        htmlReporter.config().setReportName("First Test Automation Report");
-        extent = new ExtentReports();
-        extent.attachReporter(htmlReporter);
+		htmlReporter.config().setDocumentTitle("First Test Automation Report");
+		htmlReporter.config().setReportName("First Test Automation Report");
+		extent = new ExtentReports();
+		extent.attachReporter(htmlReporter);
 
 	}
 
 	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod(Method method, Object[] parameters) {
 
-		
 //		String methodParams ="";
-        
-		//default IE browser
-       // useBrowser();
+
+		// default IE browser
+		// useBrowser();
 //        if(parameters.length != 0){
 //               if(method.getName().contains("AdHoc")){
 //                      methodParams = " " + parameters[0] + " ";
@@ -65,12 +60,13 @@ public class TestBase {
 //                      methodParams = " " + parameters[0] + " " + parameters[1] + " ";
 //               }
 //        }            
-        System.out.println("TEST STARTED: " + method.getName()); //+ methodParams);
-        test = extent.createTest(method.getName()); //+ methodParams);
-       if(driver !=null){
+		System.out.println("TEST STARTED: " + method.getName()); // + methodParams);
+		test = extent.createTest(method.getName()); // + methodParams);
+		if (driver != null) {
 
-        navigateToURL("https://ancabota09.wixsite.com/intern");
-        driver.manage().window().maximize();        }
+			navigateToURL("https://ancabota09.wixsite.com/intern");
+			driver.manage().window().maximize();
+		}
 
 	}
 
@@ -83,34 +79,32 @@ public class TestBase {
 //        }else{
 //               screenShot = null;
 //        }            
-        
-   if (result.getStatus() == ITestResult.FAILURE) {
-        System.out.println("FAILED TEST: " + result.getName());
-        System.out.println(result.getThrowable().toString());
-        test.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().toString(), ExtentColor.RED));
-        test.log(Status.FAIL, "Test Case Failed is "+result.getName());
-		 test.log(Status.FAIL, "Test Case Failed is "+result.getThrowable());
-		 String screenshotPath = CaptureScreenShot.getScreenshot(driver, result.getName());
-		 // add it in the extent report 
-		 test.addScreenCaptureFromPath(screenshotPath);
-    //    test.addScreenCaptureFromPath(screenShot);
-        
+
+		if (result.getStatus() == ITestResult.FAILURE) {
+			System.out.println("FAILED TEST: " + result.getName());
+			System.out.println(result.getThrowable().toString());
+			test.log(Status.FAIL, MarkupHelper.createLabel(result.getThrowable().toString(), ExtentColor.RED));
+			test.log(Status.FAIL, "Test Case Failed is " + result.getName());
+			test.log(Status.FAIL, "Test Case Failed is " + result.getThrowable());
+			String screenshotPath = CaptureScreenShot.getScreenshot(driver, result.getName());
+			// add it in the extent report
+			test.addScreenCaptureFromPath(screenshotPath);
+			// test.addScreenCaptureFromPath(screenShot);
+
 //        if(driver != null){
 //        driver.manage().deleteAllCookies();
 //        }
-   }
-   else if (result.getStatus() == ITestResult.SKIP){
-        System.out.println("SKIPPED");       
-        test.log(Status.SKIP, MarkupHelper.createLabel("Skipped", ExtentColor.ORANGE));
-   }           
-   else{
-        System.out.println("PASSED TEST: " + result.getName());
-        test.log(Status.PASS, MarkupHelper.createLabel("Passed", ExtentColor.GREEN));
-   }
-   
-   extent.flush();
+		} else if (result.getStatus() == ITestResult.SKIP) {
+			System.out.println("SKIPPED");
+			test.log(Status.SKIP, MarkupHelper.createLabel("Skipped", ExtentColor.ORANGE));
+		} else {
+			System.out.println("PASSED TEST: " + result.getName());
+			test.log(Status.PASS, MarkupHelper.createLabel("Passed", ExtentColor.GREEN));
+		}
+
+		extent.flush();
 	}
-	 
+
 //	//public void getResult(ITestResult result) throws Exception{
 //		 if(result.getStatus() == ITestResult.FAILURE) {
 //		 test.log(Status.FAIL, "Test Case Failed is "+result.getName());
@@ -137,13 +131,11 @@ public class TestBase {
 	public void navigateToURL(String url) {
 		driver.get(url);
 	}
-	
+
 	public String getCrtURL() {
 		return driver.getCurrentUrl();
 	}
-	
 
-	
 	public void click(WebElement element) throws InterruptedException {
 		element.click();
 
@@ -156,40 +148,39 @@ public class TestBase {
 	public void changeFrame(WebElement frame) {
 		driver.switchTo().frame(frame);
 	}
-	
+
 	public void doubleClick(WebElement element, int x, int y) throws InterruptedException {
 		Actions act = new Actions(driver);
 		Thread.sleep(2000);
-		act.moveToElement(element,x,y).doubleClick().build().perform();
+		act.moveToElement(element, x, y).doubleClick().build().perform();
 	}
-
-	
 
 	public void scrollDown(int a, int b) throws InterruptedException {
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		Thread.sleep(2000);
-		js.executeScript("window.scrollTo" +a+b);
-	
+		js.executeScript("window.scrollTo" + a + b);
+
 	}
-	/////Report////
+
+	///// Report////
 	public void logReport(String logType, String logDetails) {
 
-        switch (logType) {
-        case LogType.PASS:
-               test.log(Status.PASS, logDetails);
-               break;
-        case LogType.FAIL:
-               test.log(Status.FAIL, logDetails);
-               break;
-        case LogType.WARNING:
-               test.log(Status.WARNING, logDetails);
-               break;
-        case LogType.ERROR:
-               test.log(Status.ERROR, logDetails);
-               break;
-        case LogType.INFO:
-               test.log(Status.INFO, logDetails);
-               break;
-        }      
-  }
+		switch (logType) {
+		case LogType.PASS:
+			test.log(Status.PASS, logDetails);
+			break;
+		case LogType.FAIL:
+			test.log(Status.FAIL, logDetails);
+			break;
+		case LogType.WARNING:
+			test.log(Status.WARNING, logDetails);
+			break;
+		case LogType.ERROR:
+			test.log(Status.ERROR, logDetails);
+			break;
+		case LogType.INFO:
+			test.log(Status.INFO, logDetails);
+			break;
+		}
+	}
 }

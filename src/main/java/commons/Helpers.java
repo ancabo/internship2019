@@ -1,12 +1,12 @@
 package commons;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
+//import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+// java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
+//import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -51,6 +51,8 @@ public class Helpers {
 			Content = BR.readLine();
 			line--;
 		}
+		BR.close();
+		FR.close();
 		return Content;
 	}
 
@@ -78,8 +80,8 @@ public class Helpers {
 			if (testSheet.getRow(i).getCell(0).getStringCellValue().equals(operation)) {
 				retValue = testSheet.getRow(i).getCell(1).getNumericCellValue();
 				return String.valueOf(retValue);
-			}
-			else i++;
+			} else
+				i++;
 		}
 		return String.valueOf(retValue);
 
