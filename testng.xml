@@ -2,7 +2,7 @@
 <suite name="Suite" parallel="false">
   <test name="Test">
     <classes>
-      <class name="com.techbeamers.Intership01"/>
+      <class name="tests.test"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
