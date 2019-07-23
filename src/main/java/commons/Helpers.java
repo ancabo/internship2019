@@ -46,7 +46,7 @@ public class Helpers {
 		return Content;
 	}
 
-	public String readFromExcel(String filePath, String fileName, String operation) throws IOException {
+	public String readFromExcel(String filePath, String fileName, String operation, int cellColumn) throws IOException {
 
 		double retValue = 0;
 		File file = new File(filePath + "\\" + fileName);
@@ -68,7 +68,7 @@ public class Helpers {
 		int i = 0;
 		while (rowCount + 1 >= 0) {
 			if (testSheet.getRow(i).getCell(0).getStringCellValue().equals(operation)) {
-				retValue = testSheet.getRow(i).getCell(1).getNumericCellValue();
+				retValue = testSheet.getRow(i).getCell(cellColumn).getNumericCellValue();
 				return String.valueOf(retValue);
 			} else
 				i++;

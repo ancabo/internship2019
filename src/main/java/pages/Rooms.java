@@ -416,30 +416,30 @@ public class Rooms extends TestBase {
 	}
 
 /////////////////keyword////////////
-	public String checkInXL() throws IOException {
+	public String checkInXL(int cellColumn) throws IOException {
 	System.out.println(System.getProperty("user.dir"));
 		return helper.readFromExcel(System.getProperty("user.dir"), "bookerDate_test.xls",
-				"CHECK-IN");
+				"CHECK-IN", cellColumn);
 	}
 
-	public String preCheckInXL(int days) throws IOException {
+	public String preCheckInXL(int days,int cellColumn) throws IOException {
 		String checkInString = helper.readFromExcel(System.getProperty("user.dir"),
-				"bookerDate_test.xls", "CHECK-IN");
+				"bookerDate_test.xls", "CHECK-IN", cellColumn);
 		double checkInDaysPrior = Double.valueOf(checkInString) - days;
 		return String.valueOf(checkInDaysPrior);
 
 	}
 
-	public String preCheckOutXL(int days) throws IOException {
+	public String preCheckOutXL(int days, int cellColumn) throws IOException {
 		String checkOutString = helper.readFromExcel(System.getProperty("user.dir"),
-				"bookerDate_test.xls", "CHECK-OUT");
+				"bookerDate_test.xls", "CHECK-OUT", cellColumn);
 		double checkInDaysPrior = Double.valueOf(checkOutString) - days;
 		return String.valueOf(checkInDaysPrior);
 
 	}
 
-	public String checkOutXL() throws IOException {
+	public String checkOutXL(int cellColumn) throws IOException {
 		return helper.readFromExcel(System.getProperty("user.dir"), "bookerDate_test.xls",
-				"CHECK-OUT");
+				"CHECK-OUT", cellColumn);
 	}
 }
