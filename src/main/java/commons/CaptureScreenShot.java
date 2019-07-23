@@ -51,9 +51,9 @@ public class CaptureScreenShot {
 		 System.out.println("Destination1: " + destination);
 		 String destination2 = "./FailedTestsScreenshots/"+screenshotName+dateName+".png";
 		 System.out.println("Destination2:" + destination2);
-		 File finalDestination = new File(destination);
+		 File finalDestination = new File(destination2);
 		 FileUtils.copyFile(source, finalDestination);
-		 return destination;
+		 return destination2;
 		 }
 	
 	
