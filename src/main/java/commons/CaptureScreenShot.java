@@ -48,6 +48,9 @@ public class CaptureScreenShot {
 		 File source = ts.getScreenshotAs(OutputType.FILE);
 		                //after execution, you could see a folder "FailedTestsScreenshots" under src folder
 		 String destination = System.getProperty("user.dir") + "/FailedTestsScreenshots/"+screenshotName+dateName+".png";
+		 System.out.println("Destination1: " + destination);
+		 String destination2 = "./FailedTestsScreenshots/"+screenshotName+dateName+".png";
+		 System.out.println("Destination2:" + destination2);
 		 File finalDestination = new File(destination);
 		 FileUtils.copyFile(source, finalDestination);
 		 return destination;
