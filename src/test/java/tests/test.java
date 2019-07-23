@@ -119,13 +119,11 @@ public class test extends TestBase {
 
 			softAssert.assertEquals(room.isPriceRight(), true);
 			logReport(LogType.INFO, "Verification of the total price is complete.");
-
+			
 			softAssert.assertAll();
+			column++;
 			if (tests != 0)
 				navigateToURL("https://ancabota09.wixsite.com/intern");
-			else
-				column++;
-
 		}
 	}
 
