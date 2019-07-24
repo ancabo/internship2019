@@ -80,26 +80,26 @@ public class ZoomInTest extends TestBase {
 		room.waitRoomClickCheckIn();
 		room.waitNextMonth();
 		room.clickInDay(helper.readFromAFile(i));
-		i++;
-		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(i)), false);
+		
+		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(i+1)), false);
 		logReport(LogType.INFO, "Click out date checked.");
-		outDay.assertEquals(room.isOutDateGreyed(helper.readFromAFile(i)), true);
-		i++;
-		room.waitAndClickOutDay(helper.readFromAFile(i));
+		outDay.assertEquals(room.isOutDateGreyed(helper.readFromAFile(i+1)), true);
+		
+		room.waitAndClickOutDay(helper.readFromAFile(i+2));
 		room.waitRoomIncreaseAdults();
 		room.waitRoomSearch();
 		outDay.assertEquals(room.isCorrectTimeFrameOneMonth(helper.readFromAFile(i), helper.readFromAFile(i+2)), true);
-		i++;
 		logReport(LogType.INFO, "Period booking is checked");
 		room.waitRoomHighestRate();
 		Thread.sleep(1500);
 		room.waitRoomClickCheckOut();
-		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(i)), false);
+		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(i+3)), false);
 		logReport(LogType.INFO, "out date checked.");
 		outDay.assertEquals(room.isPriceRight(), true);
 		logReport(LogType.INFO, "Price checked.");
-		i++;
+		
 		if (tests != 0)
+			i=i+4;
 			navigateToURL("https://ancabota09.wixsite.com/intern");
 	}
 	outDay.assertAll();
