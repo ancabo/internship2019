@@ -89,7 +89,8 @@ public class DriverHelpers extends TestBase {
 	public void waitForElementVisibility(By by) throws InterruptedException {
 //		for (int i = 0; i <= 5; i++) {
 //			try {
-				wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+				//wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+				wait.until(ExpectedConditions.elementToBeClickable(by));
 //				break;
 //			} catch (Exception e) {
 //				Thread.sleep(2000);
