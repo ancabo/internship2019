@@ -117,7 +117,7 @@ public class test extends TestBase {
 			Thread.sleep(1500);
 			room.waitRoomClickCheckOut();
 
-			softAssert.assertEquals(room.isOutDateClickable(room.preCheckOutXL(4, index + 1, checkersInOut)), false);
+			softAssert.assertEquals(room.isOutDateClickable(room.preCheckOutXL(2, index, checkersInOut)), false);
 			logReport(LogType.INFO,
 					"Verification that the outdate is unclickable on the desired room page is complete.");
 
@@ -127,8 +127,8 @@ public class test extends TestBase {
 			index = index + 2;
 			if (tests != 0)
 				navigateToURL("https://ancabota09.wixsite.com/intern");
+			softAssert.assertAll();
 		}
-		softAssert.assertAll();
 	}
 
 }

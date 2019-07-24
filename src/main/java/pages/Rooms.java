@@ -234,7 +234,10 @@ public class Rooms extends TestBase {
 
 	public void waitBodyFrame() {
 
-		changeFrame(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//iframe[@title='Book a Room']")));
+		driverHelper.waitForElementVisibility(By.xpath("//iframe[@title='Book a Room']"));
+		// changeFrame(driverHelper.fluentWaitElementPresentBy(15, 1,
+		// By.xpath("//iframe[@title='Book a Room']")));
+		changeFrame(bodyFrame);
 
 	}
 
@@ -250,59 +253,77 @@ public class Rooms extends TestBase {
 	}
 
 	public void waitRoomClickCheckOut() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//div[@id='check-out']")));
+		driverHelper.waitForElementVisibility(By.xpath("//div[@id='check-out']"));
+		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
+		// By.xpath("//div[@id='check-out']")));
+		click(checkOut);
 	}
 
 	public void waitRoomIncreaseAdults() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//li[@class='adults']/div/a")));
+		driverHelper.waitForElementVisibility(By.xpath("//li[@class='adults']/div/a"));
+		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
+		// By.xpath("//li[@class='adults']/div/a")));
+		click(adultsIncrease);
 	}
 
 	public void waitRoomDecreaseAdults() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1,
-				By.xpath("//li[@class='adults']/div/a/following-sibling::a")));
+		driverHelper.waitForElementVisibility(By.xpath("//li[@class='adults']/div/a/following-sibling::a"));
+//		click(driverHelper.fluentWaitElementPresentBy(15, 1,
+//				By.xpath("//li[@class='adults']/div/a/following-sibling::a")));
+		click(adultsDecrease);
 	}
 
 	public void waitRoomIncreaseKids() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//li[@class='children']/div/a")));
+		driverHelper.waitForElementVisibility(By.xpath("//li[@class='children']/div/a"));
+		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
+		// By.xpath("//li[@class='children']/div/a")));
+		click(kidsIncrease);
 	}
 
 	public void waitRoomDecreaseKids() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1,
-				By.xpath("//li[@class='children']/div/a/following-sibling::a")));
+		driverHelper.waitForElementVisibility(By.xpath("//li[@class='children']/div/a/following-sibling::a"));
+//		click(driverHelper.fluentWaitElementPresentBy(15, 1,
+//				By.xpath("//li[@class='children']/div/a/following-sibling::a")));
+		click(kidsDecrease);
 	}
 
 	public void waitRoomSearch() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//button[@class='search s-button']")));
+		driverHelper.waitForElementVisibility(By.xpath("//button[@class='search s-button']"));
+		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
+		// By.xpath("//button[@class='search s-button']")));
+		click(searchBtn);
 	}
 
 	public void waitRoomLowestRate() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//ul/li[1]/div/div[1]/img")));
+		driverHelper.waitForElementVisibility(By.xpath("//ul/li[1]/div/div[1]/img"));
+		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
+		// By.xpath("//ul/li[1]/div/div[1]/img")));
+		click(roomWithLowestRate);
 	}
 
 	public void waitRoomMediumRate() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1, By.xpath("//ul/li[2]/div/div[1]/img")));
+		driverHelper.waitForElementVisibility(By.xpath("//ul/li[2]/div/div[1]/img"));
+		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
+		// By.xpath("//ul/li[2]/div/div[1]/img")));
+		click(roomWithMediumRate);
 	}
 
 	public void waitRoomHighestRate() throws InterruptedException {
-
-		click(driverHelper.fluentWaitElementPresentBy(15, 1,
-				By.xpath("//*[@id='content']/div/div[2]/div/ul/li[3]/div/div[1]/img")));
+		driverHelper.waitForElementVisibility(By.xpath("//*[@id='content']/div/div[2]/div/ul/li[3]/div/div[1]/img"));
+//		click(driverHelper.fluentWaitElementPresentBy(15, 1,
+//				By.xpath("//*[@id='content']/div/div[2]/div/ul/li[3]/div/div[1]/img")));
+		click(roomWithTheHighestRate);
 
 	}
 
 	///////////////// Calendar Actions //////////////////////
 
 	public void waitNextMonth() throws InterruptedException {
-		click(driverHelper.fluentWaitElementPresentBy(30, 1,
-				By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
+		driverHelper.waitForElementVisibility(
+				By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]"));
+		// click(driverHelper.fluentWaitElementPresentBy(30, 1,
+		// By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
+		click(nextMonth);
 	}
 
 //	public void waitPrevMonth() throws InterruptedException {
@@ -329,7 +350,9 @@ public class Rooms extends TestBase {
 	}
 
 	public void waitAndClickOutDay(String zi) throws InterruptedException {
-		waitOutDate(zi);
+		driverHelper.waitForElementVisibility(
+				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + zi + ")]/.."));
+		outDate(zi);
 		click(outDay);
 	}
 
@@ -438,7 +461,7 @@ public class Rooms extends TestBase {
 //		double checkInDaysPrior = Double.valueOf(checkInString) - days;
 //		return String.valueOf(checkInDaysPrior);
 		String checkInString = arrayList.get(index);
-		double checkInDaysPrior = Double.valueOf(checkInString) - days;
+		int checkInDaysPrior = Double.valueOf(checkInString).intValue() - days;
 		return String.valueOf(checkInDaysPrior);
 
 	}
@@ -448,8 +471,8 @@ public class Rooms extends TestBase {
 //				"CHECK-OUT", cellColumn);
 //		double checkInDaysPrior = Double.valueOf(checkOutString) - days;
 //		return String.valueOf(checkInDaysPrior);
-		String checkOutString = arrayList.get(index);
-		double checkOutDaysPrior = Double.valueOf(checkOutString) - days;
+		String checkInString = arrayList.get(index);
+		int checkOutDaysPrior = Double.valueOf(checkInString).intValue() + days;
 		return String.valueOf(checkOutDaysPrior);
 
 	}
