@@ -232,7 +232,7 @@ public class Rooms extends TestBase {
 	//// Frame changes ////
 	//////////////////////
 
-	public void waitBodyFrame() {
+	public void waitBodyFrame() throws InterruptedException {
 
 		driverHelper.waitForElementVisibility(By.xpath("//iframe[@title='Book a Room']"));
 		// changeFrame(driverHelper.fluentWaitElementPresentBy(15, 1,

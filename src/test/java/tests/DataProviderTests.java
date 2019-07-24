@@ -43,8 +43,9 @@ public class DataProviderTests extends TestBase {
 		// int intCheckOutDate = Double.valueOf(checkOutDate).intValue();
 
 		header.waitAndClickRooms();
-		Thread.sleep(1000);
-		room.bodyFrame();
+		//Thread.sleep(3000);
+		room.waitBodyFrame();
+		//Thread.sleep(5000);
 		room.waitRoomClickCheckIn();
 
 		///// calendar opens, calendar selection starts
