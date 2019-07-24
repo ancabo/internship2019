@@ -30,7 +30,6 @@ public class DriverHelpers extends TestBase {
 		driver.switchTo().window(browserTabs.get(index));
 	}
 
-//<<<<<<< Updated upstream
 
 	public void waitPageLoad(int sec) {
 		driver.manage().timeouts().pageLoadTimeout(sec, TimeUnit.SECONDS);
@@ -87,66 +86,7 @@ public class DriverHelpers extends TestBase {
 		});
 		return fluentElement;
 	}
-//=======
-//	public void waitPageLoad(int sec) {
-//		driver.manage().timeouts().pageLoadTimeout(sec, TimeUnit.SECONDS);
-//	}
-//
-//	public void waitUntilElementNotDisplayed(WebElement element) throws InterruptedException {
-//		Stopwatch stopwatch = Stopwatch.createStarted();
-//
-//		while (isElementDisplayed(element) && stopwatch.elapsed(TimeUnit.SECONDS) < 60) {
-//
-//			Thread.sleep(1000);
-//		}
-//		stopwatch.stop();
-//	}
-//
-//	public Boolean isElementDisplayed(WebElement element) throws InterruptedException {
-//		Boolean flag = false;
-//
-//		for (int i = 0; i <= 5; i++) {
-//			try {
-//				flag = element.isDisplayed();
-//				break;
-//			} catch (Exception e) {
-//
-//				Thread.sleep(2000);
-//
-//				Thread.sleep(2000);
-//			}
-//		}
-//		return flag;
-//	}
-//
-//	public WebElement fluentWaitElementPresentBy(int secTimeOut, int secSearchInterval, By by) {
-//		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(secTimeOut, TimeUnit.SECONDS)
-//				.pollingEvery(secSearchInterval, TimeUnit.SECONDS)
-//				.ignoring(NoSuchElementException.class, StaleElementReferenceException.class);
-//
-//		WebElement fluentElement = wait.until(new Function<WebDriver, WebElement>() {
-//			public WebElement apply(WebDriver driver) {
-//				return driver.findElement(by);
-//			}
-//		});
-//		return fluentElement;
-//	}
-//
-//	public WebElement fluentWait(int secTimeOut, int secSearchInterval, WebElement element) {
-//>>>>>>> Stashed changes
-//
-//		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(secTimeOut, TimeUnit.SECONDS)
-//				.pollingEvery(secSearchInterval, TimeUnit.SECONDS).ignoring(NoSuchElementException.class);
-//
-//		WebElement fluentElement = wait.until(new Function<WebDriver, WebElement>() {
-//
-//			public WebElement apply(WebDriver driver) {
-//				return element;
-//			}
-//
-//		});
-//		return fluentElement;
-//	}
+
 
 	public void waitForElementVisibility(By by) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));

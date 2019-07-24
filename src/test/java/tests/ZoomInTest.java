@@ -1,6 +1,9 @@
 package tests;
 
+import java.awt.List;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -69,38 +72,48 @@ public class ZoomInTest extends TestBase {
 
 	@Test(priority = 2)
 	public void booking() throws InterruptedException, IOException {
+		int i=0;
+		int tests=2;
 		SoftAssert outDay = new SoftAssert();
 		logReport(LogType.INFO, "test3 started");
+	while(tests != 0) {
+		tests--;
 		header.waitAndClickRooms();
 		room.waitBodyFrame();
 		room.waitRoomClickCheckIn();
 		room.waitNextMonth();
-		// helper.readFromAFile();
-		room.clickInDay(helper.readFromAFile(0));
-
-		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(1)), false);
+		room.clickInDay(helper.readFromAFile(i));
+		i++;
+		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(i)), false);
 		logReport(LogType.INFO, "Click out date checked.");
-
-		outDay.assertEquals(room.isOutDateGreyed(helper.readFromAFile(1)), true);
-
-		room.waitAndClickOutDay(helper.readFromAFile(2));
-
+		
+		outDay.assertEquals(room.isOutDateGreyed(helper.readFromAFile(i)), true);
+		i++;
+		room.waitAndClickOutDay(helper.readFromAFile(i));
+		i++;
 		room.waitRoomIncreaseAdults();
 		room.waitRoomSearch();
 
 		outDay.assertEquals(room.isCorrectTimeFrameOneMonth(helper.readFromAFile(0), helper.readFromAFile(2)), true);
 		logReport(LogType.INFO, "Period booking is checked");
 
+		
 		room.waitRoomHighestRate();
 		Thread.sleep(1500);
 		room.waitRoomClickCheckOut();
 
-		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(3)), false);
+		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(i)), false);
+		outDay.assertEquals(room.isOutDateClickable(helper.readFromAFile(i)), false);
 		logReport(LogType.INFO, "out date checked.");
 
+	
+		
 		outDay.assertEquals(room.isPriceRight(), true);
 		logReport(LogType.INFO, "Price checked.");
 		outDay.assertAll();
-	}
+		i++;
+		if (tests != 0)
+			navigateToURL("https://ancabota09.wixsite.com/intern");
+	}}
 
 }
