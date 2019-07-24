@@ -20,7 +20,7 @@ import commons.TestBase;
 
 public class DriverHelpers extends TestBase {
 
-	WebDriverWait wait = new WebDriverWait(driver, 120);
+	WebDriverWait wait = new WebDriverWait(driver, 50000);
 
 	public void changeTab(int index) throws InterruptedException {
 		Thread.sleep(5000);

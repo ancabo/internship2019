@@ -1,6 +1,7 @@
 package tests;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 //import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
@@ -68,7 +69,9 @@ public class test extends TestBase {
 	@Test
 	public void bookingRoomVerify() throws InterruptedException, IOException {
 		int tests = 3;
-		int column = 1;
+		int index = 0;
+		ArrayList<String> checkersInOut = new ArrayList<String>();
+		helper.addExcelToList(System.getProperty("user.dir"), "bookerDate_test.xls", checkersInOut);
 
 		SoftAssert softAssert = new SoftAssert();
 		logReport(LogType.INFO, "Room booking test started");
@@ -86,26 +89,27 @@ public class test extends TestBase {
 			// calendar opens, calendar selection starts
 			// Thread.sleep(1000);
 			room.waitNextMonth();
-			room.waitAndClickInDay(room.checkInXL(column));
+			room.waitAndClickInDay(room.checkInXL(index, checkersInOut));
 
 			//// it moves automatically to checkout calendar selection
 			//// We verify if the date 24 august is clickable
 			// Thread.sleep(1000);
-			softAssert.assertEquals(room.isOutDateClickable(room.preCheckInXL(1, column)), false);
+			softAssert.assertEquals(room.isOutDateClickable(room.preCheckInXL(1, index, checkersInOut)), false);
 			logReport(LogType.INFO, "Verification that the button is unclickable complete.");
 
 			// verify color
-			softAssert.assertEquals(room.isOutDateGreyed(room.preCheckInXL(1, column)), true);
+			softAssert.assertEquals(room.isOutDateGreyed(room.preCheckInXL(1, index, checkersInOut)), true);
 			logReport(LogType.INFO, "Verification that the button greyed out is complete.");
 
 			///// set check out to 31 aug
-			room.waitAndClickOutDay(room.checkOutXL(column));
+			room.waitAndClickOutDay(room.checkOutXL(index + 1, checkersInOut));
 			// Thread.sleep(1000);
 			room.waitRoomIncreaseAdults();
 			room.waitRoomSearch();
 
 			// we verify the timeframe is correct
-			softAssert.assertEquals(room.isCorrectTimeFrame(), true);
+			softAssert.assertEquals(room.isCorrectTimeFrameOneMonth(room.checkInXL(index, checkersInOut),
+					room.checkOutXL(index + 1, checkersInOut)), true);
 			logReport(LogType.INFO, "Verification of the timeframe is complete.");
 
 			// click highest rate room
@@ -113,18 +117,18 @@ public class test extends TestBase {
 			Thread.sleep(1500);
 			room.waitRoomClickCheckOut();
 
-			softAssert.assertEquals(room.isOutDateClickable(room.preCheckOutXL(4, column)), false);
+			softAssert.assertEquals(room.isOutDateClickable(room.preCheckOutXL(4, index + 1, checkersInOut)), false);
 			logReport(LogType.INFO,
 					"Verification that the outdate is unclickable on the desired room page is complete.");
 
 			softAssert.assertEquals(room.isPriceRight(), true);
 			logReport(LogType.INFO, "Verification of the total price is complete.");
-			
-			softAssert.assertAll();
-			column++;
+
+			index = index + 2;
 			if (tests != 0)
 				navigateToURL("https://ancabota09.wixsite.com/intern");
 		}
+		softAssert.assertAll();
 	}
 
 }

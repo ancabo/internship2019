@@ -1,6 +1,7 @@
 package pages;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -374,9 +375,15 @@ public class Rooms extends TestBase {
 		return flag;
 	}
 
-	public boolean isCorrectTimeFrame() throws IOException {
+	public boolean isCorrectTimeFrameOneMonth(String inDay, String outDay) throws IOException {
 		Boolean flag = false;
-		if (periodBooking.getText().equals("Aug 25-31, 2019 | 6 night(s)")) {
+		//// bad bad bad, will fix the dates later :(
+		int intOutDay = Integer.valueOf(outDay).intValue();
+		int intInDay = Double.valueOf(inDay).intValue();
+		int timePeriod = intOutDay - intInDay;
+		// if (periodBooking.getText().equals("Aug 25-31, 2019 | 6 night(s)")) {
+		if (periodBooking.getText().equals("Aug " + String.valueOf(intInDay) + "-" + String.valueOf(intOutDay)
+				+ ", 2019 | " + String.valueOf(timePeriod) + " night(s)")) {
 			flag = true;
 			System.out.println("Correct timeframe");
 			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("correct timeframe"));
@@ -416,27 +423,33 @@ public class Rooms extends TestBase {
 	}
 
 /////////////////keyword////////////
-	public String checkInXL(int cellColumn) throws IOException {
-		return helper.readFromExcel("System.getProperty(\"user.dir\")", "bookerDate_test.xls", "CHECK-IN", cellColumn);
+	public String checkInXL(int index, ArrayList<String> arrayList) throws IOException {
+		return arrayList.get(index);
 	}
 
-	public String preCheckInXL(int days, int cellColumn) throws IOException {
-		String checkInString = helper.readFromExcel("System.getProperty(\"user.dir\")", "bookerDate_test.xls",
-				"CHECK-IN", cellColumn);
+	public String preCheckInXL(int days, int index, ArrayList<String> arrayList) throws IOException {
+//		String checkInString = helper.readFromExcel("System.getProperty(\"user.dir\")", "bookerDate_test.xls",
+//				"CHECK-IN", cellColumn);
+//		double checkInDaysPrior = Double.valueOf(checkInString) - days;
+//		return String.valueOf(checkInDaysPrior);
+		String checkInString = arrayList.get(index);
 		double checkInDaysPrior = Double.valueOf(checkInString) - days;
 		return String.valueOf(checkInDaysPrior);
 
 	}
 
-	public String preCheckOutXL(int days, int cellColumn) throws IOException {
-		String checkOutString = helper.readFromExcel("System.getProperty(\"user.dir\")", "bookerDate_test.xls",
-				"CHECK-OUT", cellColumn);
-		double checkInDaysPrior = Double.valueOf(checkOutString) - days;
-		return String.valueOf(checkInDaysPrior);
+	public String preCheckOutXL(int days, int index, ArrayList<String> arrayList) throws IOException {
+//		String checkOutString = helper.readFromExcel(System.getProperty("user.dir"), "bookerDate_test.xls",
+//				"CHECK-OUT", cellColumn);
+//		double checkInDaysPrior = Double.valueOf(checkOutString) - days;
+//		return String.valueOf(checkInDaysPrior);
+		String checkOutString = arrayList.get(index);
+		double checkOutDaysPrior = Double.valueOf(checkOutString) - days;
+		return String.valueOf(checkOutDaysPrior);
 
 	}
 
-	public String checkOutXL(int cellColumn) throws IOException {
-		return helper.readFromExcel("System.getProperty(\"user.dir\")", "bookerDate_test.xls", "CHECK-OUT", cellColumn);
+	public String checkOutXL(int index, ArrayList<String> arrayList) throws IOException {
+		return arrayList.get(index);
 	}
 }
