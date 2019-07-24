@@ -81,6 +81,9 @@ public class Rooms extends TestBase {
 	@FindBy(xpath = "//div/div[@name='check_out']/div")
 	private WebElement checkOutMonth;
 
+	/// timeperiod
+	private int timePeriod;
+
 	////////////// room element ///////////////////
 
 	@FindBy(xpath = "//ul/li[1]/div/div[1]/img")
@@ -378,9 +381,9 @@ public class Rooms extends TestBase {
 	public boolean isCorrectTimeFrameOneMonth(String inDay, String outDay) throws IOException {
 		Boolean flag = false;
 		//// bad bad bad, will fix the dates later :(
-		int intOutDay = Integer.valueOf(outDay).intValue();
+		int intOutDay = Double.valueOf(outDay).intValue();
 		int intInDay = Double.valueOf(inDay).intValue();
-		int timePeriod = intOutDay - intInDay;
+		timePeriod = intOutDay - intInDay;
 		// if (periodBooking.getText().equals("Aug 25-31, 2019 | 6 night(s)")) {
 		if (periodBooking.getText().equals("Aug " + String.valueOf(intInDay) + "-" + String.valueOf(intOutDay)
 				+ ", 2019 | " + String.valueOf(timePeriod) + " night(s)")) {
@@ -409,8 +412,10 @@ public class Rooms extends TestBase {
 
 	public boolean isPriceRight() throws IOException {
 		boolean flag = false;
+		Double daylyPrice = Double.valueOf(roomPerDayPrice.getText().substring(1));
+		int totalPrice = (int) Math.round(daylyPrice * timePeriod);
 		if (driverHelper.fluentWaitElementPresentBy(5, 1, By.xpath("//tr[@class='total']/td/following-sibling::td"))
-				.getText().equals("$620")) {
+				.getText().equals("$" + String.valueOf(totalPrice))) {
 			flag = true;
 			System.out.println("Price is right");
 			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("total price - right"));
