@@ -14,11 +14,12 @@ public class DataProviderBase {
 			{ "15", "26" } 
 		};
 	}
-		else return Object[][] {
-			{},
-			{},
-			{}
+		else {
+			return new Object[][] {
+			{ "25", "24", "31", "27"},
+			{ "14", "13", "23", "19"}
 		};
+	}
 	}
 
 }
