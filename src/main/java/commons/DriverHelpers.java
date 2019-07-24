@@ -20,7 +20,7 @@ import commons.TestBase;
 
 public class DriverHelpers extends TestBase {
 
-	WebDriverWait wait = new WebDriverWait(driver, 50000);
+	WebDriverWait wait = new WebDriverWait(driver, 200000);
 
 	public void changeTab(int index) throws InterruptedException {
 		Thread.sleep(5000);
@@ -29,7 +29,6 @@ public class DriverHelpers extends TestBase {
 		ArrayList<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
 		driver.switchTo().window(browserTabs.get(index));
 	}
-
 
 	public void waitPageLoad(int sec) {
 		driver.manage().timeouts().pageLoadTimeout(sec, TimeUnit.SECONDS);
@@ -86,7 +85,6 @@ public class DriverHelpers extends TestBase {
 		});
 		return fluentElement;
 	}
-
 
 	public void waitForElementVisibility(By by) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
