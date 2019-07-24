@@ -107,7 +107,7 @@ public class Contact extends TestBase {
 	
 	public void doubleClickToZoomIn() throws InterruptedException {
 		d_helper.fluentWait(10, 1, google);
-		doubleClick(reportGoogleError,0,-35);
+		doubleClick(google,0,-35);
 	}
 	
 	
