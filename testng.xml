@@ -3,6 +3,7 @@
   <test name="Test">
     <classes>
       <class name="tests.test"/>
+      <class name="tests.ZoomInTest"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->
