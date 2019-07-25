@@ -200,7 +200,7 @@ public class Home extends TestBase {
 	}
 
 	public void waitAndClickOutDay(String zi) throws InterruptedException {
-		waitOutDate(zi);
+		outDate(zi);
 		click(out_day);
 		parentFrame();
 	}
