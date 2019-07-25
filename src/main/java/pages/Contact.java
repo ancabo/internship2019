@@ -87,7 +87,7 @@ public class Contact extends TestBase {
 	/////////Action on elements////////////////
 	
 	public void waitAndChangeIframe() throws InterruptedException {
-		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='i6lyzjshmapContainer']/iframe"));
+		d_helper.waitForElementVisibility(By.xpath("//*[@id='i6lyzjshmapContainer']/iframe"));
 		changeFrame(iframe);
 	}
 	
@@ -106,7 +106,8 @@ public class Contact extends TestBase {
 	
 	
 	public void doubleClickToZoomIn() throws InterruptedException {
-		d_helper.fluentWait(10, 1, google);
+	//	d_helper.fluentWait(10, 1, google);
+		d_helper.waitForElementVisibility(By.xpath("//*[@class='gm-style']/div[2]"));
 		doubleClick(google,0,-35);
 	}
 	
