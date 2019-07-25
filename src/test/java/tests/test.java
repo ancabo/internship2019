@@ -80,9 +80,9 @@ public class test extends TestBase {
 		// SoftAssert correctTimeFrame = new SoftAssert();
 		while (tests != 0) {
 			tests--;
-			// Thread.sleep(4000);
-			header.waitAndClickRooms();
 			Thread.sleep(1000);
+			header.waitAndClickRooms();
+			//Thread.sleep(1000);
 			room.bodyFrame();
 			room.waitRoomClickCheckIn();
 
