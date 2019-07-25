@@ -388,8 +388,8 @@ public class Rooms extends TestBase {
 
 	public boolean isOutDateGreyed(String zi) throws InterruptedException {
 		Boolean flag = false;
-		driverHelper.waitForElementVisible(
-				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
+//		driverHelper.waitForElementVisible(
+//				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
 		outDate(zi);
 		if (outDay.getCssValue("opacity").equals("0.5")) {
 			flag = true;
@@ -403,8 +403,8 @@ public class Rooms extends TestBase {
 
 	public boolean isInDateClickable(String zi) throws IOException {
 		Boolean flag = true;
-		driverHelper.waitForElementVisible(
-				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
+//		driverHelper.waitForElementVisible(
+//				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
 		inDate(zi);
 		String isDisabled = inDay.getAttribute("disabled");
 		if (isDisabled != null) {
