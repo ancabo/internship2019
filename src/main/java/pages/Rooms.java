@@ -337,15 +337,15 @@ public class Rooms extends TestBase {
 //		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("")));
 //	}
 
-	private void waitInDate(String azi) {
-		inDay = driverHelper.fluentWaitElementPresentBy(15, 1,
-				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/.."));
-	}
-
-	private void waitOutDate(String azi) {
-		outDay = driverHelper.fluentWaitElementPresentBy(15, 1,
-				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/.."));
-	}
+//	private void waitInDate(String azi) {
+//		inDay = driverHelper.fluentWaitElementPresentBy(15, 1,
+//				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/.."));
+//	}
+//
+//	private void waitOutDate(String azi) {
+//		outDay = driverHelper.fluentWaitElementPresentBy(15, 1,
+//				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/.."));
+//	}
 
 	public void waitAndClickInDay(String azi) throws InterruptedException {
 		driverHelper.waitForElementVisibility(
@@ -386,9 +386,11 @@ public class Rooms extends TestBase {
 		return flag;
 	}
 
-	public boolean isOutDateGreyed(String zi) {
+	public boolean isOutDateGreyed(String zi) throws InterruptedException {
 		Boolean flag = false;
-		waitOutDate(zi);
+		driverHelper.waitForElementVisible(
+				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
+		outDate(zi);
 		if (outDay.getCssValue("opacity").equals("0.5")) {
 			flag = true;
 			System.out.println("The button is greyed out");
@@ -401,7 +403,9 @@ public class Rooms extends TestBase {
 
 	public boolean isInDateClickable(String zi) throws IOException {
 		Boolean flag = true;
-		waitInDate(zi);
+		driverHelper.waitForElementVisible(
+				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
+		inDate(zi);
 		String isDisabled = inDay.getAttribute("disabled");
 		if (isDisabled != null) {
 			flag = false;
