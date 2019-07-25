@@ -52,7 +52,7 @@ public class Footer extends TestBase {
 		///////////////////////////
 
 	public void waitAndClickFacebookIcon() {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.xpath("//*[@id='i6rlbitx0imageimageimage']")).click();
+		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='i6rlbitx0imageimageimage']")).click();
 		//d_helper.fluentWait(10, 1,fbIcon).click();s
 		//fbIcon.click();
 	}

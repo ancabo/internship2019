@@ -17,7 +17,7 @@ public class DataProviderBase {
 		else {
 			return new Object[][] {
 			{ "25", "24", "31", "27"},
-			{ "14", "13", "23", "19"}
+			{ "14", "13", "23", "16"}
 		};
 	}
 	}

@@ -61,14 +61,14 @@ public class Header extends TestBase {
 	}
 
 	public void waitAndClickRooms() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 5);
+		WebDriverWait wait = new WebDriverWait(driver, 15);
 		WebElement rooms = wait.until(ExpectedConditions.elementToBeClickable(By.id("i6kl732v2label")));
 		click(rooms);
 	
 	}
 
 	public void waitAndClickContact() throws InterruptedException {
-		d_helper.fluentWaitElementPresentBy(5, 1, By.id("i6kl732v3label"));
+		d_helper.fluentWaitElementPresentBy(15, 1, By.id("i6kl732v3label"));
 		contact.click();
 	}
 

@@ -100,12 +100,11 @@ public class ZoomInTest extends TestBase {
 			
 			outDay.assertEquals(room.isPriceRight(), true);
 			logReport(LogType.INFO, "Price checked.");
-			
-			if (tests != 0)
-				i = i + 4;
+			i = i + 4;
+			if (tests != 0) 
 			navigateToURL("https://ancabota09.wixsite.com/intern");
+			outDay.assertAll();
 		}
-		outDay.assertAll();
 	}
 
 }
