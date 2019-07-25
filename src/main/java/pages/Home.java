@@ -155,33 +155,40 @@ public class Home extends TestBase {
 	//////////////////////
 
 	public void waitAndClickCheckIn() throws InterruptedException {
-		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.id("check-in")));
+		driveHelper.waitForElementVisibility(By.id("check-in"));
+		click(checkIn);
 	}
 
 	public void waitAndClickCheckOut() throws InterruptedException {
-		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.id("check-out")));
+		driveHelper.waitForElementVisibility(By.id("check-out"));
+		click(checkOut);
 	}
 
 	public void waitAndClickSearchBtn() throws InterruptedException {
-		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//span[contains(text(), 'Search')]")));
+		driveHelper.waitForElementVisibility(By.xpath("//span[contains(text(), 'Search')]"));
+		click(searchBtn);
 	}
 
 	//// Calendar wait acts /////
 
 	public void waitAndNextMonth() throws InterruptedException {
-		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//button[@aria-label='Next month']")));
+		driveHelper.waitForElementVisibility(By.xpath("//button[@aria-label='Next month']"));
+		click(nextMonth);
 	}
 
 	public void waitAndPrevMonth() throws InterruptedException {
-		click(driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//button[@aria-label='Previous month']")));
+		driveHelper.waitForElementVisibility(By.xpath("//button[@aria-label='Previous month']"));
+		click(prevMonth);
 	}
 
-	private void waitInDate(String azi) {
-		in_day = driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//span[contains(text(), " + azi + ")]"));
+	private void waitInDate(String azi) throws InterruptedException {
+		driveHelper.waitForElementVisibility(By.xpath("//span[contains(text(), " + azi + ")]"));
+		in_day = driver.findElement(By.xpath("//span[contains(text(), " + azi + ")]"));
 	}
 
-	private void waitOutDate(String azi) {
-		out_day = driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//span[contains(text(), " + azi + ")]"));
+	private void waitOutDate(String azi) throws InterruptedException {
+		driveHelper.waitForElementVisibility(By.xpath("//span[contains(text(), " + azi + ")]"));
+		out_day = driver.findElement(By.xpath("//span[contains(text(), " + azi + ")]"));
 	}
 
 	public void waitAndClickInDay(String azi) throws InterruptedException {
@@ -222,12 +229,11 @@ public class Home extends TestBase {
 	//////////////////////////
 
 	public void waitForBookingFrame() {
-		changeFrame(driveHelper.fluentWaitElementPresentBy(10, 1, By.xpath("//iframe[@title='Wix Hotels']")));
+		driveHelper.waitForFrameAndSwitch(By.xpath("//iframe[@title='Wix Hotels']"));
 	}
 
 	public void waitForCalendarFrame() {
-		changeFrame(driveHelper.fluentWaitElementPresentBy(10, 1,
-				By.xpath("//iframe[@class='s_yOSHETPAPopupSkiniframe']")));
+		driveHelper.waitForFrameAndSwitch(By.xpath("//iframe[@class='s_yOSHETPAPopupSkiniframe']"));
 	}
 
 }

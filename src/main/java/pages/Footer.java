@@ -51,30 +51,31 @@ public class Footer extends TestBase {
 		//// Actions on elements////
 		///////////////////////////
 
-	public void waitAndClickFacebookIcon() {
-		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='i6rlbitx0imageimageimage']")).click();
+	public void waitAndClickFacebookIcon() throws InterruptedException {
+		d_helper.waitForElementVisibility(By.xpath("//*[@id='i6rlbitx0imageimageimage']"));
+		click(fbIcon);
 		//d_helper.fluentWait(10, 1,fbIcon).click();s
 		//fbIcon.click();
 	}
 
-	public void waitAndClickTwitterIcon() {
-		d_helper.fluentWaitElementPresentBy(15, 1, By.id("i6rlbitx1imagelink"));
-		twitterIcon.click();
+	public void waitAndClickTwitterIcon() throws InterruptedException {
+		d_helper.waitForElementVisibility(By.id("i6rlbitx1imagelink"));
+		click(twitterIcon);
 	}
 
-	public void waitAndClickPinterestIcon() {
-		d_helper.fluentWaitElementPresentBy(15, 1, By.id("i6rlbitx2imagelink"));
-		pinterestIcon.click();
+	public void waitAndClickPinterestIcon() throws InterruptedException {
+		d_helper.waitForElementVisibility(By.id("i6rlbitx2imagelink"));
+		click(pinterestIcon);
 	}
 
-	public void waitAndClickEmailAdress() {
-		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='i71ww6nk']/p[1]/object/a"));
-		emailAdress.click();
+	public void waitAndClickEmailAdress() throws InterruptedException {
+		d_helper.waitForElementVisibility(By.xpath("//*[@id='i71ww6nk']/p[1]/object/a"));
+		click(emailAdress);
 	}
 
-	public void waitAndClickWixSite() {
-		d_helper.fluentWaitElementPresentBy(15, 1, By.xpath("//*[@id='i71wwqnj']/p[2]/span/a"));
-		wixSite.click();
+	public void waitAndClickWixSite() throws InterruptedException {
+		d_helper.waitForElementVisibility(By.xpath("//*[@id='i71wwqnj']/p[2]/span/a"));
+		click(wixSite);
 	}
 
 
@@ -83,13 +84,13 @@ public class Footer extends TestBase {
 	//////////////////////////////////////
 
 	public void waitAndChangeToChatFrame() {
-		d_helper.fluentWait(15, 1, wixChatFrame);
-		changeFrame(wixChatFrame);
+		d_helper.waitForFrameAndSwitch(By.xpath ("//iframe[@title='Wix Chat']"));
 	}
 	
 	public void setFrameAndClickChat() throws InterruptedException {
 		waitAndChangeToChatFrame();
-		click(d_helper.fluentWaitElementPresentBy(10, 1, By.xpath("//*[@class='_2wjrm']")));
+		d_helper.waitForElementVisibility(By.xpath("//*[@class='_2wjrm']"));
+		click(chatBtn);
 	}
 
 	/////////////////////// Chat button keywords //////////////////////

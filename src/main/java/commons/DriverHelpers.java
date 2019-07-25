@@ -103,4 +103,8 @@ public class DriverHelpers extends TestBase {
 	public void waitForElementVisible(By by) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
+	
+	public void waitForFrameAndSwitch(By by) {
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
+	}
 }

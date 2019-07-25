@@ -240,8 +240,7 @@ public class Rooms extends TestBase {
 
 	public void waitBodyFrame() throws InterruptedException {
 
-		WebDriverWait wait = new WebDriverWait(driver, 10);
-		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[@title='Book a Room']")));
+		driverHelper.waitForFrameAndSwitch(By.xpath("//iframe[@title='Book a Room']"));
 		// driverHelper.waitForElementVisibility(By.xpath("//iframe[@title='Book a
 		// Room']"));
 		// changeFrame(driverHelper.fluentWaitElementPresentBy(15, 1,
