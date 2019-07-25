@@ -64,13 +64,15 @@ public class Home extends TestBase {
 
 	private WebElement in_day;
 
-	private void inDate(String azi) {
+	private void inDate(String azi) throws InterruptedException {
+		driveHelper.waitForElementVisibility(By.xpath("//span[contains(text(), " + azi + ")]"));
 		in_day = driver.findElement(By.xpath("//span[contains(text(), " + azi + ")]"));
 	}
 
 	private WebElement out_day;
 
-	private void outDate(String zi) {
+	private void outDate(String zi) throws InterruptedException {
+		driveHelper.waitForElementVisibility(By.xpath("//span[contains(text(), " + zi + ")]"));
 		out_day = driver.findElement(By.xpath("//span[contains(text(), " + zi + ")]"));
 	}
 

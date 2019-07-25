@@ -141,7 +141,8 @@ public class TestBase {
 		
 	}
 
-	public void parentFrame() {
+	public void parentFrame() throws InterruptedException {
+		Thread.sleep(100);
 		driver.switchTo().parentFrame();
 	}
 
