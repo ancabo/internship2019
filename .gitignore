@@ -10,6 +10,9 @@ output.txt
 /logs/
 /test-output/
 /Test-ScreenShots/
+/FailedTestsScreenshots/
+
 
 # report file
 PmiReport.html
+FirstReport.html
