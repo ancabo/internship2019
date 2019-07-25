@@ -83,7 +83,7 @@ public class test extends TestBase {
 			Thread.sleep(1000);
 			header.waitAndClickRooms();
 			//Thread.sleep(1000);
-			room.bodyFrame();
+			room.waitBodyFrame();
 			room.waitRoomClickCheckIn();
 
 			// calendar opens, calendar selection starts
