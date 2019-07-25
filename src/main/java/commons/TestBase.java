@@ -3,7 +3,7 @@ package commons;
 //import java.io.IOException;
 import java.lang.reflect.Method;
 
-import org.openqa.selenium.JavascriptExecutor;
+//import org.openqa.selenium.JavascriptExecutor;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -150,18 +150,18 @@ public class TestBase {
 		driver.switchTo().frame(frame);
 	}
 
-	public void doubleClick(WebElement element, int x, int y) throws InterruptedException {
+	public void doubleClick(WebElement element, int width, int hight) throws InterruptedException {
 		Actions act = new Actions(driver);
 		Thread.sleep(2000);
-		act.moveToElement(element, x, y).doubleClick().build().perform();
+		act.moveToElement(element, width, hight).doubleClick().build().perform();
 	}
 
-	public void scrollDown(int a, int b) throws InterruptedException {
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		Thread.sleep(2000);
-		js.executeScript("window.scrollTo" + a + b);
-
-	}
+//	public void scrollDown(int startPoint, int stopPoint) throws InterruptedException {
+//		JavascriptExecutor js = (JavascriptExecutor) driver;
+//		Thread.sleep(2000);
+//		js.executeScript("window.scrollTo" + startPoint + stopPoint);
+//
+//	}
 
 	///// Report////
 	public void logReport(String logType, String logDetails) {
