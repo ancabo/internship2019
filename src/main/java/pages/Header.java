@@ -61,8 +61,7 @@ public class Header extends TestBase {
 	}
 
 	public void waitAndClickRooms() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 15);
-		WebElement rooms = wait.until(ExpectedConditions.elementToBeClickable(By.id("i6kl732v2label")));
+		d_helper.waitForElementVisibility(By.id("i6kl732v2label"));
 		click(rooms);
 	
 	}
