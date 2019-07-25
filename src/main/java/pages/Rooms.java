@@ -8,6 +8,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import commons.CaptureScreenShot;
 import commons.DriverHelpers;
@@ -63,12 +65,16 @@ public class Rooms extends TestBase {
 	private WebElement inDay;
 
 	private void inDate(String zi) {
+		driverHelper
+				.waitForElementVisible(By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
 		inDay = driver.findElement(By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
 	}
 
 	private WebElement outDay;
 
 	private void outDate(String zi) {
+		driverHelper
+				.waitForElementVisible(By.xpath("//div/div[@name='check_out']//span[contains(text(), " + zi + ")]/.."));
 		outDay = driver.findElement(By.xpath("//div/div[@name='check_out']//span[contains(text(), " + zi + ")]/.."));
 	}
 
@@ -234,10 +240,13 @@ public class Rooms extends TestBase {
 
 	public void waitBodyFrame() throws InterruptedException {
 
-		driverHelper.waitForElementVisibility(By.xpath("//iframe[@title='Book a Room']"));
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.xpath("//iframe[@title='Book a Room']")));
+		// driverHelper.waitForElementVisibility(By.xpath("//iframe[@title='Book a
+		// Room']"));
 		// changeFrame(driverHelper.fluentWaitElementPresentBy(15, 1,
 		// By.xpath("//iframe[@title='Book a Room']")));
-		changeFrame(bodyFrame);
+		// changeFrame(bodyFrame);
 
 	}
 
@@ -345,7 +354,13 @@ public class Rooms extends TestBase {
 		driverHelper.waitForElementVisibility(
 				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + azi + ")]/.."));
 		inDate(azi);
-		click(inDay);
+		try {
+			click(inDay);
+		} catch (Exception e) {
+			System.out.println("Exception!!!!!!!!!!");
+			inDate(azi);
+			click(inDay);
+		}
 
 	}
 
@@ -360,6 +375,8 @@ public class Rooms extends TestBase {
 
 	public boolean isOutDateClickable(String zi) {
 		Boolean flag = true;
+		driverHelper
+				.waitForElementVisible(By.xpath("//div/div[@name='check_out']//span[contains(text(), " + zi + ")]/.."));
 		outDate(zi);
 		String isDisabled = outDay.getAttribute("disabled");
 		if (isDisabled != null) {

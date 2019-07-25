@@ -2,12 +2,14 @@ package tests;
 
 import java.io.IOException;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import commons.DataProviderBase;
+import commons.DriverHelpers;
 import commons.Helpers;
 import commons.LogType;
 import commons.TestBase;
@@ -24,6 +26,7 @@ public class DataProviderTests extends TestBase {
 	Header header;
 	Helpers helper;
 	Footer footer;
+	DriverHelpers driverHelper;
 
 	@BeforeMethod
 	public void elements() {
@@ -31,6 +34,7 @@ public class DataProviderTests extends TestBase {
 		home = new Home(driver);
 		room = new Rooms(driver);
 		helper = new Helpers();
+		driverHelper = new DriverHelpers();
 		footer = new Footer(driver);
 	}
 
@@ -43,10 +47,13 @@ public class DataProviderTests extends TestBase {
 		// int intCheckOutDate = Double.valueOf(checkOutDate).intValue();
 
 		header.waitAndClickRooms();
-		//Thread.sleep(3000);
+		// Thread.sleep(500);
 		room.waitBodyFrame();
-		//Thread.sleep(5000);
+		// Thread.sleep(1000);
 		room.waitRoomClickCheckIn();
+		if (driverHelper.isElementDisplayed(driver.findElement(
+				By.xpath("//*[@id=\"hotel-container\"]/section/div[1]/div/form/ul/li[1]/div[2]"))) == false)
+			room.waitRoomClickCheckIn();
 
 		///// calendar opens, calendar selection starts
 		room.waitNextMonth();
