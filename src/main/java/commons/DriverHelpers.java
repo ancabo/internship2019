@@ -107,8 +107,8 @@ public class DriverHelpers extends TestBase {
 	}
 
 	// wait for javascript wait
-	public void waitAjaxIsLoaded(int timeout) {
-		WebDriverWait waitAjx = new WebDriverWait(driver, timeout);
-		waitAjx.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
+	public void waitJavaScriptIsLoaded(int timeout) {
+		WebDriverWait waitJavaScript = new WebDriverWait(driver, timeout);
+		waitJavaScript.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
 	}
 }

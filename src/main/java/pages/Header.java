@@ -45,32 +45,38 @@ public class Header extends TestBase {
 	///// Actions /////
 	//////////////////
 	public void waitAndClickHomeLogo() throws InterruptedException {
+		d_helper.waitJavaScriptIsLoaded(5000);
 		d_helper.waitForElementVisibility(By.xpath("//*[@id=\'i6ksxrtk\']/h1/a"));
 		click(homeLogo);
 	}
 
 	public void waitAndClickHome() throws InterruptedException {
+		d_helper.waitJavaScriptIsLoaded(5000);
 		d_helper.waitForElementVisibility(By.id("i6kl732v0label"));
 		click(home);
 	}
 
 	public void waitAndClickExplore() throws InterruptedException {
+		d_helper.waitJavaScriptIsLoaded(5000);
 		d_helper.waitForElementVisibility(By.id("i6kl732v1label"));
 		click(explore);
 	}
 
 	public void waitAndClickRooms() throws InterruptedException {
+		d_helper.waitJavaScriptIsLoaded(5000);
 		d_helper.waitForElementVisibility(By.id("i6kl732v2label"));
 		click(rooms);
 
 	}
 
 	public void waitAndClickContact() throws InterruptedException {
+		d_helper.waitJavaScriptIsLoaded(5000);
 		d_helper.waitForElementVisibility(By.id("i6kl732v3label"));
 		contact.click();
 	}
 
 	public void waitAndClickBookNow() throws InterruptedException {
+		d_helper.waitJavaScriptIsLoaded(5000);
 		d_helper.waitForElementVisibility(By.id("i6tj0u8xlabel"));
 		click(book_now);
 	}
