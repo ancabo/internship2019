@@ -24,8 +24,6 @@ public class DriverHelpers extends TestBase {
 
 	public void changeTab(int index) throws InterruptedException {
 		Thread.sleep(5000);
-		// fluentWaitElementPresentBy(7,1,
-		// By.xpath("//*[@id='js_k']/div/div/div[1]/div[1]/h1/a/span"));
 		ArrayList<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
 		driver.switchTo().window(browserTabs.get(index));
 	}
@@ -87,23 +85,23 @@ public class DriverHelpers extends TestBase {
 	}
 
 	public void waitForElementVisibility(By by) throws InterruptedException {
-		// wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 		int i = 5;
 		while (i != 0) {
 			try {
 				wait.until(ExpectedConditions.elementToBeClickable(by));
 			} catch (Exception e) {
 				Thread.sleep(500);
-				System.out.println("waitforvisielement exception"+e);
+				System.out.println("waitforvisielement exception" + e);
 			}
 			i--;
 		}
 
 	}
+
 	public void waitForElementVisible(By by) {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(by));
 	}
-	
+
 	public void waitForFrameAndSwitch(By by) {
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
 	}

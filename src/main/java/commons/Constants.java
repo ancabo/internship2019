@@ -1,6 +1,7 @@
 package commons;
 
-public class LogType{
+public class Constants{
+	//log types
     public static final String  PASS = "Pass";
     public static final String  FAIL = "Fail";
     public static final String  WARNING = "Warning";

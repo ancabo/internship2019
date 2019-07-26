@@ -19,11 +19,7 @@ public class CaptureScreenShot {
 
 		TakesScreenshot screen = (TakesScreenshot) driver;
 		File src = screen.getScreenshotAs(OutputType.FILE);
-
-		// String dest = System.getProperty("user.dir") +
-		// "\\Test-ScreenShots\\"+screenName+".png";
 		String dest = "./Test-ScreenShots/" + screenName + ".png";
-
 		File target = new File(dest);
 		FileUtils.copyFile(src, target);
 
@@ -36,23 +32,16 @@ public class CaptureScreenShot {
 		return fileName;
 	}
 
-	public static String generateFileName(ITestResult result) {
-		Date date = new Date();
-		String fileName = result.getMethod().getMethodName() + "_" + dateFormat.format(date);
-		return fileName;
-	}
-	
 	public static String getScreenshot(WebDriver driver, String screenshotName) throws Exception {
-		 String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		 TakesScreenshot ts = (TakesScreenshot) driver;
-		 File source = ts.getScreenshotAs(OutputType.FILE);
-		                //after execution, you could see a folder "FailedTestsScreenshots" under src folder
-		 String destination = "./FailedTestsScreenshots/"+screenshotName+dateName+".png";
-		 File finalDestination = new File(destination);
-		 FileUtils.copyFile(source, finalDestination);
-		 return destination;
-		 }
-	
-	
-}
+		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		// after execution, you could see a folder "FailedTestsScreenshots" under src
+		// folder
+		String destination = "./FailedTestsScreenshots/" + screenshotName + dateName + ".png";
+		File finalDestination = new File(destination);
+		FileUtils.copyFile(source, finalDestination);
+		return destination;
+	}
 
+}

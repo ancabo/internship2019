@@ -5,20 +5,19 @@ import java.util.ArrayList;
 
 //import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import commons.CaptureScreenShot;
 import commons.Helpers;
-import commons.LogType;
+import commons.Constants;
 import commons.TestBase;
 import pages.Header;
 import pages.Home;
 import pages.Rooms;
 import pages.Footer;
 
-@Listeners(commons.ListenersTest.class)
+
 
 public class test extends TestBase {
 
@@ -39,7 +38,7 @@ public class test extends TestBase {
 
 	@Test
 	public void bookOverOneYear() throws InterruptedException, IOException {
-		logReport(LogType.INFO, "Booking test started started.");
+		logReport(Constants.INFO, "Booking test started started.");
 		SoftAssert noOverbooking = new SoftAssert();
 		home.waitFrameAndCheckIn();
 		home.waitAndClickInDay(helper.azi());
@@ -49,14 +48,14 @@ public class test extends TestBase {
 		home.waitAndClickOutDay(helper.azi());
 		home.waitFrameAndClickSearchBtn();
 		noOverbooking.assertEquals(room.isOverBook(), true);
-		logReport(LogType.INFO, "Booking test ended.");
+		logReport(Constants.INFO, "Booking test ended.");
 		noOverbooking.assertAll();
 
 	}
 
 	@Test
 	public void checkChatButton() throws InterruptedException, IOException {
-		logReport(LogType.INFO, "Chat button test started.");
+		logReport(Constants.INFO, "Chat button test started.");
 		SoftAssert chatWorks = new SoftAssert();
 		footer.setFrameAndClickChat();
 		Thread.sleep(1000);
@@ -74,13 +73,13 @@ public class test extends TestBase {
 		helper.addExcelToList(System.getProperty("user.dir"), "bookerDate_test.xls", checkersInOut);
 
 		SoftAssert softAssert = new SoftAssert();
-		logReport(LogType.INFO, "Room booking test started");
+		logReport(Constants.INFO, "Room booking test started");
 
 		// SoftAssert outDateGreyed = new SoftAssert();
 		// SoftAssert correctTimeFrame = new SoftAssert();
 		while (tests != 0) {
 			tests--;
-			Thread.sleep(1000);
+			//Thread.sleep(1000);
 			header.waitAndClickRooms();
 			//Thread.sleep(1000);
 			room.waitBodyFrame();
@@ -95,11 +94,11 @@ public class test extends TestBase {
 			//// We verify if the date 24 august is clickable
 			// Thread.sleep(1000);
 			softAssert.assertEquals(room.isOutDateClickable(room.preCheckInXL(1, index, checkersInOut)), false);
-			logReport(LogType.INFO, "Verification that the button is unclickable complete.");
+			logReport(Constants.INFO, "Verification that the button is unclickable complete.");
 
 			// verify color
 			softAssert.assertEquals(room.isOutDateGreyed(room.preCheckInXL(1, index, checkersInOut)), true);
-			logReport(LogType.INFO, "Verification that the button greyed out is complete.");
+			logReport(Constants.INFO, "Verification that the button greyed out is complete.");
 
 			///// set check out to 31 aug
 			room.waitAndClickOutDay(room.checkOutXL(index + 1, checkersInOut));
@@ -110,7 +109,7 @@ public class test extends TestBase {
 			// we verify the timeframe is correct
 			softAssert.assertEquals(room.isCorrectTimeFrameOneMonth(room.checkInXL(index, checkersInOut),
 					room.checkOutXL(index + 1, checkersInOut)), true);
-			logReport(LogType.INFO, "Verification of the timeframe is complete.");
+			logReport(Constants.INFO, "Verification of the timeframe is complete.");
 
 			// click highest rate room
 			room.waitRoomHighestRate();
@@ -118,11 +117,11 @@ public class test extends TestBase {
 			room.waitRoomClickCheckOut();
 
 			softAssert.assertEquals(room.isOutDateClickable(room.preCheckOutXL(2, index, checkersInOut)), false);
-			logReport(LogType.INFO,
+			logReport(Constants.INFO,
 					"Verification that the outdate is unclickable on the desired room page is complete.");
 
 			softAssert.assertEquals(room.isPriceRight(), true);
-			logReport(LogType.INFO, "Verification of the total price is complete.");
+			logReport(Constants.INFO, "Verification of the total price is complete.");
 
 			index = index + 2;
 			if (tests != 0)

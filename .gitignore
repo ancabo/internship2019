@@ -11,6 +11,7 @@ output.txt
 /test-output/
 /Test-ScreenShots/
 /FailedTestsScreenshots/
+src/test/java/tests/CloudTest.java
 
 
 # report file

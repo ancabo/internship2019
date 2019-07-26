@@ -48,22 +48,9 @@ public class TestBase {
 
 	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod(Method method, Object[] parameters) {
-
-//		String methodParams ="";
-
-		// default IE browser
-		// useBrowser();
-//        if(parameters.length != 0){
-//               if(method.getName().contains("AdHoc")){
-//                      methodParams = " " + parameters[0] + " ";
-//               }else{
-//                      methodParams = " " + parameters[0] + " " + parameters[1] + " ";
-//               }
-//        }            
 		System.out.println("TEST STARTED: " + method.getName()); // + methodParams);
 		test = extent.createTest(method.getName()); // + methodParams);
 		if (driver != null) {
-
 			navigateToURL("https://ancabota09.wixsite.com/intern");
 			driver.manage().window().maximize();
 		}
@@ -73,13 +60,6 @@ public class TestBase {
 	@AfterMethod(alwaysRun = true)
 	public void afterMethod(ITestResult result) throws Exception {
 		System.out.println("EXECUTION FINISHED FOR: " + result.getName());
-//		String screenShot;
-//        if(driver != null){
-//        screenShot = CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName(result));
-//        }else{
-//               screenShot = null;
-//        }            
-
 		if (result.getStatus() == ITestResult.FAILURE) {
 			System.out.println("FAILED TEST: " + result.getName());
 			System.out.println(result.getThrowable().toString());
@@ -89,11 +69,9 @@ public class TestBase {
 			String screenshotPath = CaptureScreenShot.getScreenshot(driver, result.getName());
 			// add it in the extent report
 			test.addScreenCaptureFromPath(screenshotPath);
-			// test.addScreenCaptureFromPath(screenShot);
-
-//        if(driver != null){
-//        driver.manage().deleteAllCookies();
-//        }
+			if (driver != null) {
+				driver.manage().deleteAllCookies();
+			}
 		} else if (result.getStatus() == ITestResult.SKIP) {
 			System.out.println("SKIPPED");
 			test.log(Status.SKIP, MarkupHelper.createLabel("Skipped", ExtentColor.ORANGE));
@@ -101,22 +79,8 @@ public class TestBase {
 			System.out.println("PASSED TEST: " + result.getName());
 			test.log(Status.PASS, MarkupHelper.createLabel("Passed", ExtentColor.GREEN));
 		}
-
 		extent.flush();
 	}
-
-//	//public void getResult(ITestResult result) throws Exception{
-//		 if(result.getStatus() == ITestResult.FAILURE) {
-//		 test.log(Status.FAIL, "Test Case Failed is "+result.getName());
-//		 test.log(Status.FAIL, "Test Case Failed is "+result.getThrowable());
-//		 String screenshotPath = CaptureScreenShot.getScreenshot(driver, result.getName());
-//		 // add it in the extent report 
-//		 test.log(Status.FAIL, (Markup) test.addScreenCaptureFromPath(screenshotPath));
-//		 }
-//		 else 
-//			 System.out.println("PASSED TEST: " + result.getName());
-//		
-//		 }
 
 	@AfterTest(alwaysRun = true)
 	public void quitDriver() {
@@ -137,8 +101,8 @@ public class TestBase {
 	}
 
 	public void click(WebElement element) throws InterruptedException {
-			element.click();
-		
+		element.click();
+
 	}
 
 	public void parentFrame() throws InterruptedException {
@@ -156,30 +120,23 @@ public class TestBase {
 		act.moveToElement(element, width, hight).doubleClick().build().perform();
 	}
 
-//	public void scrollDown(int startPoint, int stopPoint) throws InterruptedException {
-//		JavascriptExecutor js = (JavascriptExecutor) driver;
-//		Thread.sleep(2000);
-//		js.executeScript("window.scrollTo" + startPoint + stopPoint);
-//
-//	}
-
 	///// Report////
 	public void logReport(String logType, String logDetails) {
 
 		switch (logType) {
-		case LogType.PASS:
+		case Constants.PASS:
 			test.log(Status.PASS, logDetails);
 			break;
-		case LogType.FAIL:
+		case Constants.FAIL:
 			test.log(Status.FAIL, logDetails);
 			break;
-		case LogType.WARNING:
+		case Constants.WARNING:
 			test.log(Status.WARNING, logDetails);
 			break;
-		case LogType.ERROR:
+		case Constants.ERROR:
 			test.log(Status.ERROR, logDetails);
 			break;
-		case LogType.INFO:
+		case Constants.INFO:
 			test.log(Status.INFO, logDetails);
 			break;
 		}
