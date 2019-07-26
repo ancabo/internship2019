@@ -191,6 +191,7 @@ public class Home extends TestBase {
 	public void waitFrameAndCheckIn() throws InterruptedException {
 
 		waitForBookingFrame();
+		driveHelper.waitJavaScriptIsLoaded(5000);
 		waitAndClickCheckIn();
 		parentFrame();
 		waitForCalendarFrame();
@@ -214,6 +215,7 @@ public class Home extends TestBase {
 	//////////////////////////
 
 	public void waitForBookingFrame() {
+		driveHelper.waitJavaScriptIsLoaded(5000);
 		driveHelper.waitForFrameAndSwitch(By.xpath("//iframe[@title='Wix Hotels']"));
 	}
 
