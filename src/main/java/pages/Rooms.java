@@ -237,14 +237,7 @@ public class Rooms extends TestBase {
 	//////////////////////
 
 	public void waitBodyFrame() throws InterruptedException {
-
 		driverHelper.waitForFrameAndSwitch(By.xpath("//iframe[@title='Book a Room']"));
-		// driverHelper.waitForElementVisibility(By.xpath("//iframe[@title='Book a
-		// Room']"));
-		// changeFrame(driverHelper.fluentWaitElementPresentBy(15, 1,
-		// By.xpath("//iframe[@title='Book a Room']")));
-		// changeFrame(bodyFrame);
-
 	}
 
 	///////////////////////
@@ -254,70 +247,50 @@ public class Rooms extends TestBase {
 	public void waitRoomClickCheckIn() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//div[@id='check-in']"));
 		click(checkIn);
-		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
-		// By.xpath("//div[@id='check-in']")));
 	}
 
 	public void waitRoomClickCheckOut() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//div[@id='check-out']"));
-		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
-		// By.xpath("//div[@id='check-out']")));
 		click(checkOut);
 	}
 
 	public void waitRoomIncreaseAdults() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//li[@class='adults']/div/a"));
-		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
-		// By.xpath("//li[@class='adults']/div/a")));
 		click(adultsIncrease);
 	}
 
 	public void waitRoomDecreaseAdults() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//li[@class='adults']/div/a/following-sibling::a"));
-//		click(driverHelper.fluentWaitElementPresentBy(15, 1,
-//				By.xpath("//li[@class='adults']/div/a/following-sibling::a")));
 		click(adultsDecrease);
 	}
 
 	public void waitRoomIncreaseKids() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//li[@class='children']/div/a"));
-		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
-		// By.xpath("//li[@class='children']/div/a")));
 		click(kidsIncrease);
 	}
 
 	public void waitRoomDecreaseKids() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//li[@class='children']/div/a/following-sibling::a"));
-//		click(driverHelper.fluentWaitElementPresentBy(15, 1,
-//				By.xpath("//li[@class='children']/div/a/following-sibling::a")));
 		click(kidsDecrease);
 	}
 
 	public void waitRoomSearch() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//button[@class='search s-button']"));
-		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
-		// By.xpath("//button[@class='search s-button']")));
 		click(searchBtn);
 	}
 
 	public void waitRoomLowestRate() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//ul/li[1]/div/div[1]/img"));
-		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
-		// By.xpath("//ul/li[1]/div/div[1]/img")));
 		click(roomWithLowestRate);
 	}
 
 	public void waitRoomMediumRate() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//ul/li[2]/div/div[1]/img"));
-		// click(driverHelper.fluentWaitElementPresentBy(15, 1,
-		// By.xpath("//ul/li[2]/div/div[1]/img")));
 		click(roomWithMediumRate);
 	}
 
 	public void waitRoomHighestRate() throws InterruptedException {
 		driverHelper.waitForElementVisibility(By.xpath("//*[@id='content']/div/div[2]/div/ul/li[3]/div/div[1]/img"));
-//		click(driverHelper.fluentWaitElementPresentBy(15, 1,
-//				By.xpath("//*[@id='content']/div/div[2]/div/ul/li[3]/div/div[1]/img")));
 		click(roomWithTheHighestRate);
 
 	}
@@ -327,25 +300,8 @@ public class Rooms extends TestBase {
 	public void waitNextMonth() throws InterruptedException {
 		driverHelper.waitForElementVisibility(
 				By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]"));
-		// click(driverHelper.fluentWaitElementPresentBy(30, 1,
-		// By.xpath("//*[@id='hotel-container']/section/div[1]/div/form/ul/li[1]/div[2]/div/nav/button[2]")));
 		click(nextMonth);
 	}
-
-//	public void waitPrevMonth() throws InterruptedException {
-//		click(prevMonth);
-//		click(driverHelper.fluentWaitElementPresentBy(10, 1, By.xpath("")));
-//	}
-
-//	private void waitInDate(String azi) {
-//		inDay = driverHelper.fluentWaitElementPresentBy(15, 1,
-//				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/.."));
-//	}
-//
-//	private void waitOutDate(String azi) {
-//		outDay = driverHelper.fluentWaitElementPresentBy(15, 1,
-//				By.xpath("//div/div[@name='check_out']//span[contains(text(), " + azi + ")]/.."));
-//	}
 
 	public void waitAndClickInDay(String azi) throws InterruptedException {
 		driverHelper.waitForElementVisibility(
@@ -388,8 +344,6 @@ public class Rooms extends TestBase {
 
 	public boolean isOutDateGreyed(String zi) throws InterruptedException {
 		Boolean flag = false;
-//		driverHelper.waitForElementVisible(
-//				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
 		outDate(zi);
 		if (outDay.getCssValue("opacity").equals("0.5")) {
 			flag = true;
@@ -403,8 +357,6 @@ public class Rooms extends TestBase {
 
 	public boolean isInDateClickable(String zi) throws IOException {
 		Boolean flag = true;
-//		driverHelper.waitForElementVisible(
-//				By.xpath("//div/div[@name='check_in']//span[contains(text(), " + zi + ")]/.."));
 		inDate(zi);
 		String isDisabled = inDay.getAttribute("disabled");
 		if (isDisabled != null) {
@@ -421,11 +373,10 @@ public class Rooms extends TestBase {
 
 	public boolean isCorrectTimeFrameOneMonth(String inDay, String outDay) throws IOException {
 		Boolean flag = false;
-		//// bad bad bad, will fix the dates later :(
+
 		int intOutDay = Double.valueOf(outDay).intValue();
 		int intInDay = Double.valueOf(inDay).intValue();
 		timePeriod = intOutDay - intInDay;
-		// if (periodBooking.getText().equals("Aug 25-31, 2019 | 6 night(s)")) {
 		if (periodBooking.getText().equals("Aug " + String.valueOf(intInDay) + "-" + String.valueOf(intOutDay)
 				+ ", 2019 | " + String.valueOf(timePeriod) + " night(s)")) {
 			flag = true;
@@ -474,10 +425,6 @@ public class Rooms extends TestBase {
 	}
 
 	public String preCheckInXL(int days, int index, ArrayList<String> arrayList) throws IOException {
-//		String checkInString = helper.readFromExcel("System.getProperty(\"user.dir\")", "bookerDate_test.xls",
-//				"CHECK-IN", cellColumn);
-//		double checkInDaysPrior = Double.valueOf(checkInString) - days;
-//		return String.valueOf(checkInDaysPrior);
 		String checkInString = arrayList.get(index);
 		int checkInDaysPrior = Double.valueOf(checkInString).intValue() - days;
 		return String.valueOf(checkInDaysPrior);
@@ -485,10 +432,6 @@ public class Rooms extends TestBase {
 	}
 
 	public String preCheckOutXL(int days, int index, ArrayList<String> arrayList) throws IOException {
-//		String checkOutString = helper.readFromExcel(System.getProperty("user.dir"), "bookerDate_test.xls",
-//				"CHECK-OUT", cellColumn);
-//		double checkInDaysPrior = Double.valueOf(checkOutString) - days;
-//		return String.valueOf(checkInDaysPrior);
 		String checkInString = arrayList.get(index);
 		int checkOutDaysPrior = Double.valueOf(checkInString).intValue() + days;
 		return String.valueOf(checkOutDaysPrior);

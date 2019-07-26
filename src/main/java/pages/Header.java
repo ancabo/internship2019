@@ -13,6 +13,7 @@ public class Header extends TestBase {
 
 	protected WebDriver driver;
 	DriverHelpers d_helper = new DriverHelpers();
+
 	public Header(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -39,7 +40,7 @@ public class Header extends TestBase {
 
 	@FindBy(id = "i6tj0u8xlabel")
 	private WebElement book_now;
-	
+
 	///////////////////
 	///// Actions /////
 	//////////////////
@@ -61,7 +62,7 @@ public class Header extends TestBase {
 	public void waitAndClickRooms() throws InterruptedException {
 		d_helper.waitForElementVisibility(By.id("i6kl732v2label"));
 		click(rooms);
-	
+
 	}
 
 	public void waitAndClickContact() throws InterruptedException {
@@ -73,6 +74,5 @@ public class Header extends TestBase {
 		d_helper.waitForElementVisibility(By.id("i6tj0u8xlabel"));
 		click(book_now);
 	}
-	
-	
+
 }

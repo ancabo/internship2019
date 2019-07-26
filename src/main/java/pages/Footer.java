@@ -11,17 +11,19 @@ import org.openqa.selenium.support.PageFactory;
 import commons.CaptureScreenShot;
 import commons.DriverHelpers;
 import commons.TestBase;
+
 public class Footer extends TestBase {
 
 	protected WebDriver driver;
 	DriverHelpers d_helper = new DriverHelpers();
+
 	public Footer(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-		////////////////
-		//// Elements////
-		////////////////
+	////////////////
+	//// Elements////
+	////////////////
 
 	@FindBy(id = "i6rlbitx0imageimageimage")
 	private WebElement fbIcon;
@@ -37,7 +39,7 @@ public class Footer extends TestBase {
 
 	@FindBy(xpath = "//*[@id='i71wwqnj']/p[2]/span/a")
 	private WebElement wixSite;
-	
+
 	@FindBy(xpath = "//iframe[@title='Wix Chat']")
 	private WebElement wixChatFrame;
 
@@ -46,16 +48,14 @@ public class Footer extends TestBase {
 
 	@FindBy(xpath = "//div[@data-hook = 'chat-widget']/div")
 	private WebElement chatWidget;
-	
-		///////////////////////////
-		//// Actions on elements////
-		///////////////////////////
+
+	///////////////////////////
+	//// Actions on elements////
+	///////////////////////////
 
 	public void waitAndClickFacebookIcon() throws InterruptedException {
 		d_helper.waitForElementVisibility(By.xpath("//*[@id='i6rlbitx0imageimageimage']"));
 		click(fbIcon);
-		//d_helper.fluentWait(10, 1,fbIcon).click();s
-		//fbIcon.click();
 	}
 
 	public void waitAndClickTwitterIcon() throws InterruptedException {
@@ -78,15 +78,14 @@ public class Footer extends TestBase {
 		click(wixSite);
 	}
 
-
 	///////////////////////////////////////
 	// Chat button actions and keywords //
 	//////////////////////////////////////
 
 	public void waitAndChangeToChatFrame() {
-		d_helper.waitForFrameAndSwitch(By.xpath ("//iframe[@title='Wix Chat']"));
+		d_helper.waitForFrameAndSwitch(By.xpath("//iframe[@title='Wix Chat']"));
 	}
-	
+
 	public void setFrameAndClickChat() throws InterruptedException {
 		waitAndChangeToChatFrame();
 		d_helper.waitForElementVisibility(By.xpath("//*[@class='_2wjrm']"));
@@ -101,8 +100,7 @@ public class Footer extends TestBase {
 		if (chatVal.equals("true")) {
 			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("in_date unclickable"));
 			return true;
-		}
-		else {
+		} else {
 			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("chat window not there"));
 			return false;
 		}

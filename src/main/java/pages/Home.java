@@ -21,22 +21,12 @@ public class Home extends TestBase {
 		PageFactory.initElements(driver, this);
 	}
 
-	// LocalDateTime data_azi= LocalDateTime.now();
-	// DateTimeFormatter format=DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-	// String format_azi=data_azi.format(format);
-	// String azi=format_azi.substring(0,2);
-
 	//////////////////////
 	/// Booking Elements///
 	//////////////////////
 
 	@FindBy(id = "check-in")
 	private WebElement checkIn;
-
-//	@FindBy(xpath = "//span[contains(text(), "+azi+")]")
-//	private WebElement inDay;
-	// WebElement in_day=driver.findElement(By.xpath("//span[contains(text(),
-	// "+azi+")]"));
 
 	@FindBy(id = "check-out")
 	private WebElement checkOut;
@@ -186,11 +176,6 @@ public class Home extends TestBase {
 	private void waitInDate(String azi) throws InterruptedException {
 		driveHelper.waitForElementVisibility(By.xpath("//span[contains(text(), " + azi + ")]"));
 		in_day = driver.findElement(By.xpath("//span[contains(text(), " + azi + ")]"));
-	}
-
-	private void waitOutDate(String azi) throws InterruptedException {
-		driveHelper.waitForElementVisibility(By.xpath("//span[contains(text(), " + azi + ")]"));
-		out_day = driver.findElement(By.xpath("//span[contains(text(), " + azi + ")]"));
 	}
 
 	public void waitAndClickInDay(String azi) throws InterruptedException {

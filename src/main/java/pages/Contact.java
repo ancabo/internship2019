@@ -16,18 +16,16 @@ public class Contact extends TestBase {
 	protected WebDriver driver;
 
 	DriverHelpers d_helper = new DriverHelpers();
-	public Contact (WebDriver driver) {
+
+	public Contact(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 
-	
 	////////////////
 	// Elements ////
 	///////////////
 
-
-	
 	//// Contact_fields ////
 
 	@FindBy(xpath = "//input[@id='comp-jxbsa1e9input']")
@@ -45,12 +43,11 @@ public class Contact extends TestBase {
 	@FindBy(xpath = "//button[@id='comp-jxbsa1filink']")
 	private WebElement submit;
 
-
 	//// Map //////////
 
 	@FindBy(xpath = "//*[@id='i6lyzjshmapContainer']/iframe")
 	private WebElement iframe;
-	
+
 	@FindBy(xpath = "//*[@class='gm-style']/div[2]")
 	private WebElement google;
 
@@ -71,53 +68,48 @@ public class Contact extends TestBase {
 
 	@FindBy(xpath = "//*[@id='map_canvas']/div/div/div[4]")
 	private WebElement mapCoord;
-	
-	////Social bar////
-	
+
+	//// Social bar////
+
 	@FindBy(id = "i6m1143v0imagelink")
 	private WebElement fbBtn;
-	
+
 	@FindBy(id = "i6m1143v1imagelink")
 	private WebElement twitterBtn;
-	
+
 	@FindBy(id = "i6m1143v2imagelink")
 	private WebElement pinterestBtn;
-	
-	
-	/////////Action on elements////////////////
-	
+
+	///////// Action on elements////////////////
+
 	public void waitAndChangeIframe() throws InterruptedException {
 		d_helper.waitForElementVisibility(By.xpath("//*[@id='i6lyzjshmapContainer']/iframe"));
 		changeFrame(iframe);
 	}
-	
+
 	public void clickFacebookButton() {
 		fbBtn.click();
-		
+
 	}
-	
+
 	public void clickTwitterButton() {
 		twitterBtn.click();
 	}
-	
+
 	public void clickPinterestButton() {
 		pinterestBtn.click();
 	}
-	
-	
+
 	public void doubleClickToZoomIn() throws InterruptedException {
-	//	d_helper.fluentWait(10, 1, google);
 		d_helper.waitForElementVisibility(By.xpath("//*[@class='gm-style']/div[2]"));
-		doubleClick(google,0,-35);
+		doubleClick(google, 0, -35);
 	}
-	
-	
+
 	public boolean checkZoomIn() throws IOException {
 		boolean flag = false;
-		
 		String zoomX = mapCoord.getAttribute("right");
 		String zoomY = mapCoord.getAttribute("width");
-		if(zoomX != "280px" || zoomY != "121px") {
+		if (zoomX != "280px" || zoomY != "121px") {
 			flag = true;
 			System.out.println("The map is zoomed");
 			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("Map is zoomed"));
@@ -127,8 +119,7 @@ public class Contact extends TestBase {
 		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("Zoom map doesn't work"));
 		return flag;
 	}
-	
-	
+
 	public boolean compareCrtUrlToOtherURL(String url) throws InterruptedException {
 		boolean flag = false;
 		Thread.sleep(1000);
@@ -137,7 +128,4 @@ public class Contact extends TestBase {
 		return flag;
 	}
 
-
-
-	
 }
