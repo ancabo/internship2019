@@ -105,4 +105,10 @@ public class DriverHelpers extends TestBase {
 	public void waitForFrameAndSwitch(By by) {
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(by));
 	}
+
+	// wait for javascript wait
+	public void waitAjaxIsLoaded(int timeout) {
+		WebDriverWait waitAjx = new WebDriverWait(driver, timeout);
+		waitAjx.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
+	}
 }
