@@ -12,6 +12,8 @@ output.txt
 /Test-ScreenShots/
 /FailedTestsScreenshots/
 src/test/java/tests/CloudTest.java
+src/main/java/pages/DangerousPage.java
+src/test/java/tests/DangerousTest.java
 
 
 # report file
