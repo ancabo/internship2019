@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import commons.CaptureScreenShot;
 import commons.DriverHelpers;
 import commons.TestBase;
 
@@ -98,10 +97,8 @@ public class Footer extends TestBase {
 		String chatVal;
 		chatVal = chatWidget.getAttribute("aria-expanded");
 		if (chatVal.equals("true")) {
-			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("in_date unclickable"));
 			return true;
 		} else {
-			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("chat window not there"));
 			return false;
 		}
 	}

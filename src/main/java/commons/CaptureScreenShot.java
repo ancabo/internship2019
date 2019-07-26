@@ -10,7 +10,6 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.testng.ITestResult;
 
 public class CaptureScreenShot {
 	private static final DateFormat dateFormat = new SimpleDateFormat("yy_MM_dd_mm_ss");

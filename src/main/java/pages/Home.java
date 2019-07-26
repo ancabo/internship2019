@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import commons.DriverHelpers;
-//import java.time.LocalDateTime;
-//mport java.time.format.DateTimeFormatter;
 import commons.TestBase;
 
 public class Home extends TestBase {

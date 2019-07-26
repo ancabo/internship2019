@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import commons.CaptureScreenShot;
 import commons.DriverHelpers;
 import commons.Helpers;
 import commons.TestBase;
@@ -362,12 +361,10 @@ public class Rooms extends TestBase {
 		if (isDisabled != null) {
 			flag = false;
 			System.out.println("Date is not clickable");
-			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("in_date unclickable"));
 			return flag;
 		}
 
 		System.out.println("Date is clickable!");
-		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("in_date clickable"));
 		return flag;
 	}
 
@@ -381,11 +378,9 @@ public class Rooms extends TestBase {
 				+ ", 2019 | " + String.valueOf(timePeriod) + " night(s)")) {
 			flag = true;
 			System.out.println("Correct timeframe");
-			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("correct timeframe"));
 			return flag;
 		}
 		System.out.println("Incorect timeframe");
-		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("incorrect timeframe"));
 		return flag;
 	}
 
@@ -396,9 +391,7 @@ public class Rooms extends TestBase {
 				.getText().equals("Sorry, we don’t take bookings over 365 nights. Try a shorter period.")) {
 
 			flag = true;
-			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("overbook message"));
 		}
-		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("no overbook message"));
 		return flag;
 	}
 
@@ -410,12 +403,10 @@ public class Rooms extends TestBase {
 				.getText().equals("$" + String.valueOf(totalPrice))) {
 			flag = true;
 			System.out.println("Price is right");
-			CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("total price - right"));
 			return flag;
 		}
 
 		System.out.println("Price is not ok");
-		CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("total price not ok"));
 		return flag;
 	}
 
