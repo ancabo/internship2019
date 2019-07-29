@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
@@ -118,6 +119,10 @@ public class TestBase {
 		Actions act = new Actions(driver);
 		Thread.sleep(2000);
 		act.moveToElement(element, width, hight).doubleClick().build().perform();
+	}
+	
+	public void dropDownSelect(String selectValue, Select select) {
+		select.selectByVisibleText(selectValue);
 	}
 
 	///// Report////
