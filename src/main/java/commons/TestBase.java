@@ -120,9 +120,18 @@ public class TestBase {
 		Thread.sleep(2000);
 		act.moveToElement(element, width, hight).doubleClick().build().perform();
 	}
-	
+
 	public void dropDownSelect(String selectValue, Select select) {
 		select.selectByVisibleText(selectValue);
+	}
+
+	public boolean isCheckBoxSelected(WebElement cBox) {
+		boolean flag = false;
+		if (cBox.isSelected()) {
+			flag = true;
+			return flag;
+		}
+		return flag;
 	}
 
 	///// Report////
