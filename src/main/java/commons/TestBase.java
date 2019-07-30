@@ -51,7 +51,7 @@ public class TestBase {
 	public void beforeMethod(Method method, Object[] parameters) {
 		System.out.println("TEST STARTED: " + method.getName()); // + methodParams);
 		test = extent.createTest(method.getName()); // + methodParams);
-		if (driver != null) {
+		if (driver != null) 
 			navigateToURL("https://ancabota09.wixsite.com/intern");
 			driver.manage().window().maximize();
 		}
