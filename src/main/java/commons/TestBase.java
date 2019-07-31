@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.ie.InternetExplorerOptions; 
 //import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -41,8 +42,9 @@ public class TestBase {
 		// instantza de driver
 		//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		//driver = new ChromeDriver();
-	System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
-		driver= new InternetExplorerDriver();
+		useBrowser();
+		//System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
+		//driver= new InternetExplorerDriver();
 		htmlReporter = new ExtentHtmlReporter("./FirstReport.html");
 		htmlReporter.config().setDocumentTitle("First Test Automation Report");
 		htmlReporter.config().setReportName("First Test Automation Report");
@@ -53,6 +55,7 @@ public class TestBase {
 
 	@BeforeMethod(alwaysRun = true)
 	public void beforeMethod(Method method, Object[] parameters) {
+		
 		System.out.println("TEST STARTED: " + method.getName()); // + methodParams);
 		test = extent.createTest(method.getName()); // + methodParams);
 		if (driver != null)
@@ -158,4 +161,49 @@ public class TestBase {
 			break;
 		}
 	}
+	
+	private void useBrowser() {
+			switch (getProperty("browser")) {
+			case "ie":
+				System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
+				InternetExplorerOptions options = new InternetExplorerOptions();
+				options.ignoreZoomSettings();
+				options.introduceFlakinessByIgnoringSecurityDomains();
+				options.setCapability("nativeEvents", false);
+				options.setCapability("unexpectedAlertBehaviour", "accept");
+				options.setCapability("ignoreProtectedModeSettings", true);
+				options.setCapability("disable-popup-blocking", true);
+				options.setCapability("enablePersistentHover", true);
+				options.setCapability("default", true);
+				driver = new InternetExplorerDriver(options);
+				break;
+			case "chrome":
+				System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+				driver = new ChromeDriver();
+				break;
+			case "noProp":
+				System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
+				options = new InternetExplorerOptions();
+				options.ignoreZoomSettings();
+				options.introduceFlakinessByIgnoringSecurityDomains();
+				options.setCapability("nativeEvents", false);
+				options.setCapability("unexpectedAlertBehaviour", "accept");
+				options.setCapability("ignoreProtectedModeSettings", true);
+				options.setCapability("disable-popup-blocking", true);
+				options.setCapability("enablePersistentHover", true);
+				options.setCapability("default", true);
+				driver = new InternetExplorerDriver(options);
+				break;
+			}
+			
+	}
+
+	private String getProperty(String property) {
+		String value = System.getProperty(property);
+		if (value == null) {
+			value = "noProp";
+		}
+		return value;
+	}
+ 
 }
