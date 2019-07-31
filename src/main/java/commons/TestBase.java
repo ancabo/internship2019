@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+//import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.ITestResult;
@@ -39,6 +40,8 @@ public class TestBase {
 		// instantza de driver
 		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 		driver = new ChromeDriver();
+//		System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
+//		driver= new InternetExplorerDriver();
 		htmlReporter = new ExtentHtmlReporter("./FirstReport.html");
 		htmlReporter.config().setDocumentTitle("First Test Automation Report");
 		htmlReporter.config().setReportName("First Test Automation Report");
@@ -51,11 +54,10 @@ public class TestBase {
 	public void beforeMethod(Method method, Object[] parameters) {
 		System.out.println("TEST STARTED: " + method.getName()); // + methodParams);
 		test = extent.createTest(method.getName()); // + methodParams);
-		if (driver != null) 
-			navigateToURL("https://ancabota09.wixsite.com/intern");
+		if (driver != null)
+			if(!method.getName().contains("orderTest"))
+				navigateToURL("https://ancabota09.wixsite.com/intern");
 			driver.manage().window().maximize();
-		}
-
 	}
 
 	@AfterMethod(alwaysRun = true)
