@@ -17,7 +17,8 @@ src/test/java/tests/DangerousTest.java
 src/main/java/commons/DangerousDataProvider.java
 pmi datas.xls
 pmi datas.xlsx
-
+Data_PMI.xls
+Data_PMI.xlsx
 # report file
 bookerDate_test.xlsx
 PmiReport.html
