@@ -40,10 +40,7 @@ public class ZoomInTest extends TestBase {
 		SoftAssert zoom = new SoftAssert();
 		logReport(Constants.INFO, "Test1 started.");
 		header.waitAndClickContact();
-		// contact.scrollDown(0, 3000);
-		// Thread.sleep(2000);
 		contact.waitAndChangeIframe();
-		//CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("Map isn't zoomed"));
 		contact.doubleClickToZoomIn();
 		zoom.assertEquals(contact.checkZoomIn(), true);
 		logReport(Constants.INFO, "Zoom test finished.");
@@ -56,9 +53,7 @@ public class ZoomInTest extends TestBase {
 		SoftAssert sa = new SoftAssert();
 		logReport(Constants.INFO, "test2 started");
 		footer.waitAndClickFacebookIcon();
-		//CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("First tab is displayed."));
 		d_helper.changeTab(1);
-		//CaptureScreenShot.captureScreen(driver, CaptureScreenShot.generateFileName("Second tab is displayed"));
 		sa.assertEquals(contact.compareCrtUrlToOtherURL(getCrtURL()), true);
 		logReport(Constants.INFO, "facebook checked");
 		sa.assertAll();
