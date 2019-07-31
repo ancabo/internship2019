@@ -8,6 +8,7 @@ import java.lang.reflect.Method;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 //import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
@@ -38,10 +39,10 @@ public class TestBase {
 	@BeforeTest(alwaysRun = true)
 	public void setUpDriver() {
 		// instantza de driver
-		System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-		driver = new ChromeDriver();
-//		System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
-//		driver= new InternetExplorerDriver();
+		//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		//driver = new ChromeDriver();
+	System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
+		driver= new InternetExplorerDriver();
 		htmlReporter = new ExtentHtmlReporter("./FirstReport.html");
 		htmlReporter.config().setDocumentTitle("First Test Automation Report");
 		htmlReporter.config().setReportName("First Test Automation Report");

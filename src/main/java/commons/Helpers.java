@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -65,6 +67,28 @@ public class Helpers {
 				arrayList.add(String.valueOf(retValue));
 			}
 		}
+
+	}
+
+	public Object addExcelToDataProvider(String filePath, String fileName) throws IOException {
+		File file = new File(filePath + "\\" + fileName);
+		FileInputStream inputStream = new FileInputStream(file);
+		Workbook bookerbook = null;
+		bookerbook = new HSSFWorkbook(inputStream);
+		Sheet testSheet = bookerbook.getSheet("Tabelle1");
+		int lastRowNum = testSheet.getLastRowNum();
+		int lastCellNum = testSheet.getRow(0).getLastCellNum();
+		Object[][] obj = new Object[lastRowNum][1];
+
+		for (int i = 0; i < lastRowNum; i++) {
+			Map<Object, Object> datamap = new HashMap<>();
+			for (int j = 0; j < lastCellNum; j++) {
+				datamap.put(testSheet.getRow(0).getCell(j).toString(), testSheet.getRow(i + 1).getCell(j).toString());
+			}
+			obj[i][0] = datamap;
+
+		}
+		return obj;
 
 	}
 }

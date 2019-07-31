@@ -2,9 +2,9 @@
 <suite name="Suite" parallel="false">
   <test name="Test">
     <classes>
-      <class name="tests.test"/>
+      <!--  <class name="tests.test"/>
       <class name="tests.ZoomInTest"/>
-      <class name="tests.DataProviderTests"/>
+      <class name="tests.DataProviderTests"/>-->
       <class name="tests.TestsDataProvider"/>
     </classes>
   </test> <!-- Test -->

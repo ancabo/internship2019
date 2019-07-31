@@ -30,6 +30,7 @@ public class DataProviderTests extends TestBase {
 
 	@BeforeMethod
 	public void elements() {
+		
 		header = new Header(driver);
 		home = new Home(driver);
 		room = new Rooms(driver);

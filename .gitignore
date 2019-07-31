@@ -14,7 +14,9 @@ output.txt
 src/test/java/tests/CloudTest.java
 src/main/java/pages/DangerousPage.java
 src/test/java/tests/DangerousTest.java
-
+src/main/java/commons/DangerousDataProvider.java
+pmi datas.xls
+pmi datas.xlsx
 
 # report file
 bookerDate_test.xlsx

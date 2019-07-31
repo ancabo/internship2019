@@ -27,6 +27,7 @@ public class ZoomInTest extends TestBase {
 
 	@BeforeMethod
 	public void elements() {
+		
 		contact = new Contact(driver);
 		d_helper = new DriverHelpers();
 		header = new Header(driver);
