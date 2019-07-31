@@ -10,8 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions; 
-//import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -40,8 +40,8 @@ public class TestBase {
 	@BeforeTest(alwaysRun = true)
 	public void setUpDriver() {
 		// instantza de driver
-		//System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-		//driver = new ChromeDriver();
+		// System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+		// driver = new ChromeDriver();
 		useBrowser();
 		//System.setProperty("webdriver.ie.driver", "IEDriverServer.exe");
 		//driver= new InternetExplorerDriver();
@@ -59,9 +59,9 @@ public class TestBase {
 		System.out.println("TEST STARTED: " + method.getName()); // + methodParams);
 		test = extent.createTest(method.getName()); // + methodParams);
 		if (driver != null)
-			if(!method.getName().contains("orderTest"))
+			if (!method.getName().contains("orderTest"))
 				navigateToURL("https://ancabota09.wixsite.com/intern");
-			driver.manage().window().maximize();
+		driver.manage().window().maximize();
 	}
 
 	@AfterMethod(alwaysRun = true)
@@ -206,4 +206,5 @@ public class TestBase {
 		return value;
 	}
  
+
 }

@@ -111,4 +111,5 @@ public class DriverHelpers extends TestBase {
 		WebDriverWait waitJavaScript = new WebDriverWait(driver, timeout);
 		waitJavaScript.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\";"));
 	}
+	
 }
