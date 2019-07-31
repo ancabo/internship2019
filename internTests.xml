@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<suite name="pmi" parallel="false">
-  <test name="pmi">
-    <classes>
-      <class name="tests.DangerousTest"/>
-    </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
